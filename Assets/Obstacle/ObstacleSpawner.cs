@@ -9,8 +9,12 @@ public class ObstacleSpawner : MonoBehaviour
 {
     [SerializeField] GameObject obstaclePrefab;
     [SerializeField] float spawnRate = 1;
-    [SerializeField] int minYRange = -6;
-    [SerializeField] int maxYRange = 13;
+
+    [SerializeField] int minRandomRange = -6;
+    [SerializeField] int maxRandomRange = 13;
+
+    [SerializeField] int minSpawnRange = 3;
+    [SerializeField] int maxSpawnRange = 95;
 
     PlayerMovement player;
 
@@ -30,12 +34,12 @@ public class ObstacleSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnRate);
 
-            //플레이어 기준 y -10 ~ 10 범위에서 장애물 생성
+            //플레이어 기준 일정 범위 내에서 장애물 생성
             float playerYPos = player.transform.position.y;
-            float spawnPosY = playerYPos + Random.Range(minYRange, maxYRange);
+            float spawnPosY = playerYPos + Random.Range(minRandomRange, maxRandomRange);
 
-            Vector2 spawnPos = new Vector2(-18, spawnPosY);
-            if (spawnPos.y <= 2 || spawnPos.y >= 95) { continue; }
+            Vector2 spawnPos = new Vector2(-23, spawnPosY);
+            if (spawnPos.y < minSpawnRange || spawnPos.y > maxSpawnRange) { continue; }
 
             Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
         }

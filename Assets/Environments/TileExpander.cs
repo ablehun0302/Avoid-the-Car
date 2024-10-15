@@ -19,7 +19,7 @@ public class TileExpander : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (!other.CompareTag("Area")) { return; }
+        if (!other.CompareTag("Area") || !enabled) { return; }
 
         float tileMoveDirection = Mathf.Sign(player.transform.position.y - transform.position.y);
 

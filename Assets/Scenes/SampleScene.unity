@@ -12403,6 +12403,37 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &420478905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 420478906}
+  m_Layer: 0
+  m_Name: MapBoundary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &420478906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420478905}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &427548184
 GameObject:
   m_ObjectHideFlags: 0
@@ -12434,8 +12465,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 4339484896879516138, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
   spawnRate: 0.5
-  minYRange: -10
-  maxYRange: 25
+  minRandomRange: -6
+  maxRandomRange: 13
+  minSpawnRange: 3
+  maxSpawnRange: 95
 --- !u!4 &427548186
 Transform:
   m_ObjectHideFlags: 0
@@ -12617,7 +12650,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.7599998, z: -10}
+  m_LocalPosition: {x: 0, y: 4.76, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12728,7 +12761,7 @@ Transform:
   m_GameObject: {fileID: 894912769}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.7599998, z: -10}
+  m_LocalPosition: {x: 0, y: 4.76, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25082,14 +25115,14 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_XDamping: 1
+  m_XDamping: 3.91
   m_YDamping: 1
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.463
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.735
+  m_DeadZoneWidth: 0.304
   m_DeadZoneHeight: 0.05
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
@@ -25311,5 +25344,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 449915632}
   - {fileID: 1897947651}
-  - {fileID: 6828890898339442272}
+  - {fileID: 420478906}
   - {fileID: 427548186}
+  - {fileID: 6828890898339442272}

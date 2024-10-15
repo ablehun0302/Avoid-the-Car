@@ -10,9 +10,16 @@ public class ObstacleMovement : MonoBehaviour
     [SerializeField] float speed = 10;
     [SerializeField] float xRange = 18;
 
-    void Update()
+    Rigidbody2D rigidBody;
+
+    void Start()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * speed);
+        rigidBody = GetComponent<Rigidbody2D>();
+    }
+
+    void FixedUpdate()
+    {
+        rigidBody.velocity = Vector2.right * speed;
 
         // 화면을 벗어나면 없애기
         if (transform.position.x >= xRange)
