@@ -104,8 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   xRange: 17
-  minYRange: -7
-  maxYRange: 100
+  minYRange: -5
+  maxYRange: 115
 --- !u!114 &5816348199840868103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32eec12bf6769448be9f314d0d57bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundGrid: {fileID: 0}
+  followCamera: {fileID: 0}
 --- !u!114 &7219320704907622659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,8 +198,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 0.6
+  m_AngularDrag: 0.3
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

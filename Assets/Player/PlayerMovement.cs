@@ -16,10 +16,12 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;  //플레이어 인풋시스템
 
     public static PlayerMovement Instance { get; private set; }
+    Rigidbody2D playerRigidbody;
 
     void Awake()
     {
         Instance = this;
+        playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
     void OnMove(InputValue value)
@@ -27,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
         moveInput = value.Get<Vector2>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Move();
     }
@@ -37,8 +39,9 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Move()
     {
-        Vector3 moveTo = moveInput * Time.deltaTime * speed;
-        transform.Translate(moveTo);
+        /*Vector3 moveTo = moveInput * Time.deltaTime * speed;
+        transform.Translate(moveTo);*/
+        playerRigidbody.AddForce(moveInput * speed);
 
         //플레이어 x값을 -11 ~ 11, y > -7 로 지정
         Vector3 clampedPosition = transform.position;

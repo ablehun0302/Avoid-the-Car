@@ -9,10 +9,13 @@ public class ObstacleSpawner : MonoBehaviour
 {
     [SerializeField] GameObject obstaclePrefab;
     [SerializeField] float spawnRate = 1;
+    [SerializeField] float spawnPosX = -23;
 
-    [SerializeField] int minRandomRange = -6;
-    [SerializeField] int maxRandomRange = 13;
+    [Header("플레이어 기준 장애물 생성 Y위치")]
+    [SerializeField] int minRandomRange = -10;
+    [SerializeField] int maxRandomRange = 30;
 
+    [Header("장애물 Y스폰 반경")]
     [SerializeField] int minSpawnRange = 3;
     [SerializeField] int maxSpawnRange = 95;
 
@@ -38,10 +41,16 @@ public class ObstacleSpawner : MonoBehaviour
             float playerYPos = player.transform.position.y;
             float spawnPosY = playerYPos + Random.Range(minRandomRange, maxRandomRange);
 
-            Vector2 spawnPos = new Vector2(-23, spawnPosY);
+            Vector2 spawnPos = new Vector2(spawnPosX, Mathf.Floor(spawnPosY));
             if (spawnPos.y < minSpawnRange || spawnPos.y > maxSpawnRange) { continue; }
+            if (spawnPos.y % 2 != 0) { spawnPos.y ++; }
 
             Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
         }
+    }
+
+    void CancelSpawnObstacles()
+    {
+        StopCoroutine(SpawnObstacles());
     }
 }

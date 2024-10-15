@@ -9,15 +9,15 @@ using UnityEngine;
 /// </summary>
 public class PlayerCollision : MonoBehaviour
 {
+    [SerializeField] GameObject groundGrid;
+    [SerializeField] CinemachineVirtualCamera followCamera;
+    [SerializeField] ObstacleSpawner obstacleSpawner;
+    [SerializeField] GameObject gameOverCanvas;
     PlayerMovement playerMovement;
-    GameObject groundGrid;
-    GameObject followCamera;
 
     void Start()
     {
         playerMovement = PlayerMovement.Instance;
-        groundGrid = GameObject.Find("GroundGrid");
-        followCamera = GameObject.Find("FollowCamera");
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -26,15 +26,23 @@ public class PlayerCollision : MonoBehaviour
         
         //장애물에 부딛힐 시 플레이어 움직임 정지
         playerMovement.enabled = false;
+
+        //플레이어 공기저항 2로 변경 -> 사망 모션
+        playerMovement.GetComponent<Rigidbody2D>().drag = 2;
         
         //타일 확장 중지
-        for (int i = 0; i < groundGrid.transform.childCount; i++)
+        foreach (Transform tile in groundGrid.transform)
         {
-            Transform tile = groundGrid.transform.GetChild(i);
             tile.gameObject.GetComponent<TileExpander>().enabled = false;
         }
 
         //카메라 비활성화
-        followCamera.GetComponent<CinemachineVirtualCamera>().enabled = false;
+        followCamera.enabled = false;
+
+        //장애물 생성 중지
+        obstacleSpawner.StopAllCoroutines();
+
+        //재시작 버튼 표시
+        gameOverCanvas.SetActive(true);
     }
 }
