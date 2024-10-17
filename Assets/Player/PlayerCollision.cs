@@ -9,7 +9,8 @@ using UnityEngine;
 /// </summary>
 public class PlayerCollision : MonoBehaviour
 {
-    [SerializeField] GameObject groundGrid;
+    //bool isGameOver = false;
+
     [SerializeField] CinemachineVirtualCamera followCamera;
     [SerializeField] ObstacleSpawner obstacleSpawner;
     [SerializeField] GameObject gameOverCanvas;
@@ -29,12 +30,6 @@ public class PlayerCollision : MonoBehaviour
 
         //플레이어 공기저항 2로 변경 -> 사망 모션
         playerMovement.GetComponent<Rigidbody2D>().drag = 2;
-        
-        //타일 확장 중지
-        foreach (Transform tile in groundGrid.transform)
-        {
-            tile.gameObject.GetComponent<TileExpander>().enabled = false;
-        }
 
         //카메라 비활성화
         followCamera.enabled = false;

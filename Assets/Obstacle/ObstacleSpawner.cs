@@ -7,17 +7,8 @@ using UnityEngine;
 /// </summary>
 public class ObstacleSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject obstaclePrefab;
+    [SerializeField] GameObject[] obstaclePrefabs;
     [SerializeField] float spawnRate = 1;
-    [SerializeField] float spawnPosX = -23;
-
-    [Header("플레이어 기준 장애물 생성 Y위치")]
-    [SerializeField] int minRandomRange = -10;
-    [SerializeField] int maxRandomRange = 30;
-
-    [Header("장애물 Y스폰 반경")]
-    [SerializeField] int minSpawnRange = 3;
-    [SerializeField] int maxSpawnRange = 95;
 
     PlayerMovement player;
 
@@ -37,15 +28,10 @@ public class ObstacleSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnRate);
 
-            //플레이어 기준 일정 범위 내에서 장애물 생성
-            float playerYPos = player.transform.position.y;
-            float spawnPosY = playerYPos + Random.Range(minRandomRange, maxRandomRange);
+            //장애물 종류 정하기
 
-            Vector2 spawnPos = new Vector2(spawnPosX, Mathf.Floor(spawnPosY));
-            if (spawnPos.y < minSpawnRange || spawnPos.y > maxSpawnRange) { continue; }
-            if (spawnPos.y % 2 != 0) { spawnPos.y ++; }
-
-            Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+            int index = Random.Range(0, obstaclePrefabs.Length);
+            Instantiate(obstaclePrefabs[index]);
         }
     }
 

@@ -9,9 +9,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed = 10;      //플레이어의 이동속도
-    [SerializeField] float xRange = 11;     //x 값 범위
-    [SerializeField] float minYRange = -7;  // -y 값 범위
-    [SerializeField] float maxYRange = 100; // +y 값 범위
+    [SerializeField] float xRange = 20;     //x 값 범위
+    [SerializeField] float yRange = 20;  //y 값 범위
 
     Vector2 moveInput;  //플레이어 인풋시스템
 
@@ -46,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         //플레이어 x값을 -11 ~ 11, y > -7 로 지정
         Vector3 clampedPosition = transform.position;
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, -xRange, xRange);
-        clampedPosition.y = Mathf.Clamp(clampedPosition.y, minYRange, maxYRange);
+        clampedPosition.y = Mathf.Clamp(clampedPosition.y, -yRange, yRange);
 
         transform.position = clampedPosition;
     }
