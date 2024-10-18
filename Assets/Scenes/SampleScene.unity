@@ -715,6 +715,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+<<<<<<< HEAD
 --- !u!1 &805049782
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,6 +865,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805049782}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> 397d082b4b404e8c79cf8d08c9bd15a893c1d68f
 --- !u!4 &823572849 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4569962649619756530, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
@@ -20911,6 +20914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleMainGroup: {fileID: 1196512402}
   titleInfoGroup: {fileID: 182604759}
+<<<<<<< HEAD
 --- !u!1 &1995429569
 GameObject:
   m_ObjectHideFlags: 0
@@ -20955,6 +20959,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> 397d082b4b404e8c79cf8d08c9bd15a893c1d68f
 --- !u!1 &2096484444
 GameObject:
   m_ObjectHideFlags: 0
