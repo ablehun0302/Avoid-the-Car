@@ -8,22 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1194769512375602591, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
+      propertyPath: m_Mass
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1464722427967307756, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
       propertyPath: speed
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1741830087265485210, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
-      propertyPath: m_Color.b
-      value: 0.1916244
-      objectReference: {fileID: 0}
-    - target: {fileID: 1741830087265485210, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
-      propertyPath: m_Color.g
-      value: 0.18431371
-      objectReference: {fileID: 0}
-    - target: {fileID: 1741830087265485210, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 796a6947331e0dc45932e0153b568ef4, type: 3}
     - target: {fileID: 4339484896879516138, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
       propertyPath: m_Name
       value: Car(3)
