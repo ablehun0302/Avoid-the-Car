@@ -14,7 +14,7 @@ public class StartGame : MonoBehaviour
         player = PlayerMovement.Instance;
     }
 
-    public void GameStart()
+    public void StartButton()
     {
         player.enabled = true;
         obstacleSpawner.SetActive(true);
