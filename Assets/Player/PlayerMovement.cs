@@ -23,6 +23,13 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
+    void OnEnable()
+    {
+        playerRigidbody.drag = 8;
+        transform.position = Vector2.zero;
+        playerRigidbody.velocity = Vector2.zero;
+    }
+
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();

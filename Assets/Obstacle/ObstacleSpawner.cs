@@ -10,21 +10,32 @@ public class ObstacleSpawner : MonoBehaviour
     [Header("기본 장애물")]
     [SerializeField] GameObject[] obstaclePrefabs;
     [SerializeField] float spawnRate = 1;
+    float currentSpawnRate;
     
     [Header("특수 장애물")]
     [SerializeField] GameObject[] specialPrefabs;
     [SerializeField] float specialRate = 10;
+    float currentSpecialRate;
 
     //[Header("스폰 설정")]
     int radius = 30;
-    bool isSpawnSpecial = false;
+    bool isSpawnSpecial;
 
     PlayerMovement player;
     [SerializeField] ScoreManager scoreManager;
+    [SerializeField] Transform obstaclePool;
 
-    void Start()
+    void OnEnable()
     {
         player = PlayerMovement.Instance;
+        
+        //기본값 초기화
+        currentSpawnRate = spawnRate;
+        currentSpecialRate = specialRate;
+        isSpawnSpecial = false;
+
+        //장애물 생성
+        StopAllCoroutines();
         StartCoroutine(SpawnObstacles());
     }
 
@@ -47,11 +58,11 @@ public class ObstacleSpawner : MonoBehaviour
         {
             //장애물 종류 정하기
             int index = Random.Range(0, obstaclePrefabs.Length);
-            GameObject obstacle = Instantiate(obstaclePrefabs[index]);
+            GameObject obstacle = Instantiate(obstaclePrefabs[index], obstaclePool);
             SetFirstPosition(obstacle);
             LookAtPlayer(obstacle);
 
-            yield return new WaitForSeconds(spawnRate);
+            yield return new WaitForSeconds(currentSpawnRate);
         }
     }
 
@@ -65,11 +76,11 @@ public class ObstacleSpawner : MonoBehaviour
         {
             //장애물 종류 정하기
             int index = Random.Range(0, specialPrefabs.Length);
-            GameObject obstacle = Instantiate(specialPrefabs[index]);
+            GameObject obstacle = Instantiate(specialPrefabs[index], obstaclePool);
             SetFirstPosition(obstacle);
             LookAtPlayer(obstacle);
 
-            yield return new WaitForSeconds(specialRate);
+            yield return new WaitForSeconds(currentSpecialRate);
         }
     }
 

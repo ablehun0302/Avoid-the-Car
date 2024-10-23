@@ -9,8 +9,8 @@ using UnityEngine;
 /// </summary>
 public class ScoreManager : MonoBehaviour
 {
-    public int Score { get; private set;} = 0;
-    float timer = 0f;
+    public int Score { get; set;} = 0;
+    public float Timer { get; set; } = 0f;
 
     PlayerMovement player;
 
@@ -23,11 +23,11 @@ public class ScoreManager : MonoBehaviour
     {
         if (!player.enabled) { return; }
 
-        timer += Time.deltaTime;
-        if (timer >= 1)
+        Timer += Time.deltaTime;
+        if (Timer >= 1)
         {
             Score ++;
-            timer = 0;
+            Timer = 0;
         }
     }
 }
