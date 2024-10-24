@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: speed
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 1464722427967307756, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
+      propertyPath: obstacleNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1741830087265485210, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
       propertyPath: m_Sprite
       value: 

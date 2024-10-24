@@ -28,11 +28,17 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.drag = 8;
         transform.position = Vector2.zero;
         playerRigidbody.velocity = Vector2.zero;
+        playerRigidbody.angularVelocity = 0;
     }
 
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+
+        //플레이어 조작 시 캐릭터 방향을 변경
+        if (moveInput == Vector2.zero) { return; }
+        float angle = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg - 90;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     void FixedUpdate()

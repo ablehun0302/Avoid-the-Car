@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BackEnd;
+using System;
 
 public class BackendManager : MonoBehaviour
 {
+    string startTime;
+
     void Start()
     {
+        //게임 시작 시 들어온 시간 체크
+        startTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
         var bro = Backend.Initialize();
 
         if (bro.IsSuccess())
@@ -18,15 +24,17 @@ public class BackendManager : MonoBehaviour
             Debug.LogError("초기화 실패 : " + bro);
         }
 
-        Test();
+        Login();
     }
 
-    void Test()
+    void Login()
     {
         BackendLogin.Instance.GuestLogin();
+    }
 
-        BackendGameLog.Instance.GameLogInsert();
-
-        Debug.Log("테스트 종료");
+    //게임 종료 시 로그 기록
+    void OnApplicationQuit()
+    {
+        BackendGameLog.Instance.TimeLogInsert(startTime);
     }
 }

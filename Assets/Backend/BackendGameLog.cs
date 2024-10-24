@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BackEnd;
+using System;
 
 public class BackendGameLog
 {
@@ -20,16 +21,22 @@ public class BackendGameLog
         }
     }
 
-    public void GameLogInsert()
+    /// <summary>
+    /// 들어온/ 나간 시간을 로그에 입력하는 메서드
+    /// </summary>
+    /// <param name="startTime">들어온 시간</param>
+    public void TimeLogInsert(string startTime)
     {
-        Param param = new Param();
+        string exitTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-        param.Add("clearStage", 1);
-        param.Add("currentMoney", 100000);
+        Param param = new Param();
+        
+        param.Add("exitTime", exitTime);
+        param.Add("startTime", startTime);
 
         Debug.Log("게임 로그 삽입을 시도합니다.");
 
-        var bro = Backend.GameLog.InsertLog("ClearStage", param);
+        var bro = Backend.GameLog.InsertLogV2("ExitGame", param);
 
         if (bro.IsSuccess() == false)
         {   

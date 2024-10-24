@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  obstacleNumber: 10
 --- !u!58 &928063588840112744
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -8,16 +8,16 @@ using UnityEngine;
 public class ObstacleMovement : MonoBehaviour
 {
     [SerializeField] float speed = 10;
+    //[SerializeField] int obstacleNumber = 0;
 
     Rigidbody2D rigidBody;
-    PlayerMovement player;
     Transform front;
 
     void OnEnable()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        player = PlayerMovement.Instance;
         front = transform.GetChild(0);
+        //gameObject.name = obstacleNumber.ToString();
     }
 
     void FixedUpdate()
@@ -42,6 +42,6 @@ public class ObstacleMovement : MonoBehaviour
     /// </summary>
     void Despawn()
     {
-        if (Vector2.Distance( Vector2.zero, transform.position) > 40) { Destroy(gameObject); }
+        if (Vector2.Distance(Vector2.zero, transform.position) > 40) { Destroy(gameObject); }
     }
 }
