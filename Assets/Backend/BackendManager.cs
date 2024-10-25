@@ -24,31 +24,25 @@ public class BackendManager : MonoBehaviour
             Debug.LogError("초기화 실패 : " + bro);
         }
 
-        Test();
+        Login();
     }
 
-    void Test()
+    void Login()
     {
         BackendLogin.Instance.GuestLogin();
 
-        BackendGameData.Instance.GameDataGet(); // 데이터 삽입 함수
+        BackendGameData.Instance.GameDataGet(); //데이터 불러오기
 
         // [추가] 서버에 불러온 데이터가 존재하지 않을 경우, 데이터를 새로 생성하여 삽입
         if (BackendGameData.userData == null)
         {
             BackendGameData.Instance.GameDataInsert();
         }
-
-        BackendGameData.Instance.LevelUp(); // [추가] 로컬에 저장된 데이터를 변경
-
-        BackendGameData.Instance.GameDataUpdate(); //[추가] 서버에 저장된 데이터를 덮어쓰기(변경된 부분만)
-        
-        Debug.Log("테스트 종료");
     }
 
     //게임 종료 시 로그 기록
     void OnApplicationQuit()
     {
-        BackendGameLog.Instance.TimeLogInsert(startTime);
+        //BackendGameLog.Instance.TimeLogInsert(startTime);
     }
 }

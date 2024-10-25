@@ -6,30 +6,21 @@ using System.Text;
 
 public class UserData
 {
-    public int level = 1;
-    public float atk = 3.5f;
-    public string info = string.Empty;
-    public Dictionary<string, int> inventory = new Dictionary<string, int>();
-    public List<string> equipment = new List<string>();
+    public int maxScore = 0;
+    public int money = 0;
+    public Dictionary<string, int> deadBy = new Dictionary<string, int>();
 
     // 데이터를 디버깅하기 위한 함수입니다.(Debug.Log(UserData);)
     public override string ToString()
     {
         StringBuilder result = new StringBuilder();
-        result.AppendLine($"level : {level}");
-        result.AppendLine($"atk : {atk}");
-        result.AppendLine($"info : {info}");
+        result.AppendLine($"maxScore : {maxScore}");
+        result.AppendLine($"money : {money}");
 
-        result.AppendLine($"inventory");
-        foreach (var itemKey in inventory.Keys)
+        result.AppendLine($"dead by");
+        foreach (var itemKey in deadBy.Keys)
         {
-            result.AppendLine($"| {itemKey} : {inventory[itemKey]}개");
-        }
-
-        result.AppendLine($"equipment");
-        foreach (var equip in equipment)
-        {
-            result.AppendLine($"| {equip}");
+            result.AppendLine($"| {itemKey} : {deadBy[itemKey]}번");
         }
 
         return result.ToString();
@@ -65,25 +56,19 @@ public class BackendGameData
         }
 
         Debug.Log("데이터를 초기화합니다.");
-        userData.level = 1;
-        userData.atk = 3.5f;
-        userData.info = "친추는 언제나 환영입니다.";
+        userData.maxScore = 0;
+        userData.money = 0;
 
-        userData.equipment.Add("전사의 투구");
-        userData.equipment.Add("강철 갑옷");
-        userData.equipment.Add("헤르메스의 군화");
-
-        userData.inventory.Add("빨간포션", 1);
-        userData.inventory.Add("하얀포션", 1);
-        userData.inventory.Add("파란포션", 1);
+        userData.deadBy.Add("하얀차", 0);
+        userData.deadBy.Add("파란차", 0);
+        userData.deadBy.Add("구급차", 0);
+        userData.deadBy.Add("사람", 0);
 
         Debug.Log("뒤끝 업데이트 목록에 해당 데이터들을 추가합니다.");
         Param param = new Param();
-        param.Add("level", userData.level);
-        param.Add("atk", userData.atk);
-        param.Add("info", userData.info);
-        param.Add("equipment", userData.equipment);
-        param.Add("inventory", userData.inventory);
+        param.Add("maxScore", userData.maxScore);
+        param.Add("money", userData.money);
+        param.Add("deadBy", userData.deadBy);
 
 
         Debug.Log("게임 정보 데이터 삽입을 요청합니다.");
@@ -126,18 +111,12 @@ public class BackendGameData
 
                 userData = new UserData();
 
-                userData.level = int.Parse(gameDataJson[0]["level"].ToString());
-                userData.atk = float.Parse(gameDataJson[0]["atk"].ToString());
-                userData.info = gameDataJson[0]["info"].ToString();
+                userData.maxScore = int.Parse(gameDataJson[0]["maxScore"].ToString());
+                userData.money = int.Parse(gameDataJson[0]["money"].ToString());
 
-                foreach (string itemKey in gameDataJson[0]["inventory"].Keys)
+                foreach (string key in gameDataJson[0]["deadBy"].Keys)
                 {
-                    userData.inventory.Add(itemKey, int.Parse(gameDataJson[0]["inventory"][itemKey].ToString()));
-                }
-
-                foreach (LitJson.JsonData equip in gameDataJson[0]["equipment"])
-                {
-                    userData.equipment.Add(equip.ToString());
+                    userData.deadBy.Add(key, int.Parse(gameDataJson[0]["deadBy"][key].ToString()));
                 }
 
                 Debug.Log(userData.ToString());
@@ -149,12 +128,18 @@ public class BackendGameData
         }
     }
 
-    public void LevelUp()
+    /// <summary>
+    /// 유저 데이터를 설정하는 메서드
+    /// </summary>
+    /// <param name="score">점수</param>
+    /// <param name="money">돈</param>
+    /// <param name="something">부딛힌 장애물</param>
+    public void UserDataSet(int score, int money, string something)
     {
-        Debug.Log("레벨을 1 증가시킵니다.");
-        userData.level += 1;
-        userData.atk += 3.5f;
-        userData.info = "내용을 변경합니다.";
+        Debug.Log("점수 설정");
+        if (userData.maxScore < score) { userData.maxScore = score; }
+        userData.money += money;
+        userData.deadBy[something] ++;
     }
 
     public void GameDataUpdate()
@@ -166,11 +151,9 @@ public class BackendGameData
         }
 
         Param param = new Param();
-        param.Add("level", userData.level);
-        param.Add("atk", userData.atk);
-        param.Add("info", userData.info);
-        param.Add("equipment", userData.equipment);
-        param.Add("inventory", userData.inventory);
+        param.Add("maxScore", userData.maxScore);
+        param.Add("money", userData.money);
+        param.Add("deadBy", userData.deadBy);
 
         BackendReturnObject bro = null;
 

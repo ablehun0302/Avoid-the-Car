@@ -12,6 +12,7 @@ public class PlayerCollision : MonoBehaviour
     public bool IsGameOver { get; set; } = false;
     AudioSource bgmusic;
     Animator animator;
+    [SerializeField] ScoreManager scoreManager;
 
     void Start()
     {
@@ -31,7 +32,12 @@ public class PlayerCollision : MonoBehaviour
         
         IsGameOver = true;
 
+        //게임오버 동작 실행
         animator.SetBool("isDead", true);
         GameManager.Instance.GameOver();
+
+        //유저 데이터 수정
+        BackendGameData.Instance.UserDataSet(scoreManager.Score, 0, other.gameObject.name);
+        BackendGameData.Instance.GameDataUpdate();
     }
 }

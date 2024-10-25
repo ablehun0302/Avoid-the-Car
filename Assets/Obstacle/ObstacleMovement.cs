@@ -8,7 +8,7 @@ using UnityEngine;
 public class ObstacleMovement : MonoBehaviour
 {
     [SerializeField] float speed = 10;
-    //[SerializeField] int obstacleNumber = 0;
+    [SerializeField] string obstacleName;
 
     Rigidbody2D rigidBody;
     Transform front;
@@ -17,7 +17,7 @@ public class ObstacleMovement : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         front = transform.GetChild(0);
-        //gameObject.name = obstacleNumber.ToString();
+        gameObject.name = obstacleName;
     }
 
     void FixedUpdate()
