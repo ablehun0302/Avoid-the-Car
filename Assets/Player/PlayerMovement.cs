@@ -16,11 +16,13 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement Instance { get; private set; }
     Rigidbody2D playerRigidbody;
+    Animator animator;
 
     void Awake()
     {
         Instance = this;
         playerRigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void OnEnable()
@@ -29,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
         transform.position = Vector2.zero;
         playerRigidbody.velocity = Vector2.zero;
         playerRigidbody.angularVelocity = 0;
+
+        animator.SetBool("isDead", false);
     }
 
     void OnMove(InputValue value)

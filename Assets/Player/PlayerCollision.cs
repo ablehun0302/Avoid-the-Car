@@ -11,10 +11,12 @@ public class PlayerCollision : MonoBehaviour
 {
     public bool IsGameOver { get; set; } = false;
     AudioSource bgmusic;
+    Animator animator;
 
     void Start()
     {
         bgmusic = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -25,9 +27,11 @@ public class PlayerCollision : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (!other.gameObject.CompareTag("Obstacle")) { return; }
+        if (!other.gameObject.CompareTag("Obstacle") || IsGameOver) { return; }
         
         IsGameOver = true;
+
+        animator.SetBool("isDead", true);
         GameManager.Instance.GameOver();
     }
 }
