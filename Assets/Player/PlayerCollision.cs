@@ -36,6 +36,9 @@ public class PlayerCollision : MonoBehaviour
         animator.SetBool("isDead", true);
         GameManager.Instance.GameOver();
 
+        //유저 점수 로그 입력
+        BackendGameLog.Instance.DeadLogInsert(scoreManager.Score, other.gameObject.name);
+
         //유저 데이터 수정
         BackendGameData.Instance.UserDataSet(scoreManager.Score, 0, other.gameObject.name);
         BackendGameData.Instance.GameDataUpdate();

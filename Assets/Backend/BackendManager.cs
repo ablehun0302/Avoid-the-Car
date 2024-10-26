@@ -43,6 +43,6 @@ public class BackendManager : MonoBehaviour
     //게임 종료 시 로그 기록
     void OnApplicationQuit()
     {
-        //BackendGameLog.Instance.TimeLogInsert(startTime);
+        BackendGameLog.Instance.TimeLogInsert(startTime);
     }
 }
