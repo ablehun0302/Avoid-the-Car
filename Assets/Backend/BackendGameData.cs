@@ -142,6 +142,11 @@ public class BackendGameData
         userData.deadBy[something] ++;
     }
 
+    public int UserMaxScoreGet()
+    {
+        return userData.maxScore;
+    }
+
     public void GameDataUpdate()
     {
         if (userData == null)

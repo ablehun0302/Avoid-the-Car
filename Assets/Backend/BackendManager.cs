@@ -8,7 +8,7 @@ public class BackendManager : MonoBehaviour
 {
     string startTime;
 
-    void Start()
+    void Awake()
     {
         //게임 시작 시 들어온 시간 체크
         startTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
