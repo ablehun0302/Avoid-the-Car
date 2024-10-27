@@ -834,7 +834,6 @@ MonoBehaviour:
   specialPrefabs:
   - {fileID: 7615275687277379018, guid: 85d7e16c06792294b9a655e052baefa9, type: 3}
   specialRate: 10
-  scoreManager: {fileID: 1995429570}
   obstaclePool: {fileID: 277040803}
 --- !u!4 &427548186
 Transform:
@@ -1394,7 +1393,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 15.8}
+  m_AnchoredPosition: {x: 0, y: -103.6}
   m_SizeDelta: {x: 336.9, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &602682829
@@ -1417,7 +1416,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB2F9\uC2E0\uC758 \uCD5C\uACE0 \uC810\uC218: 0"
+  m_text: "\uCD5C\uACE0 \uC810\uC218: 0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98caa25839fac2942983a06698b0101f, type: 2}
   m_sharedMaterial: {fileID: 8610275499380727057, guid: 98caa25839fac2942983a06698b0101f, type: 2}
@@ -1837,7 +1836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -149.2}
+  m_AnchoredPosition: {x: 0, y: -204.3}
   m_SizeDelta: {x: 1247.0125, y: 160.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &717316955
@@ -1916,7 +1915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c60e5d8b4fc4e4bb11c35f2971e4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 1995429570}
+  scoreManager: {fileID: 1884199030}
   sourceText: "\uC810\uC218: {0}"
 --- !u!114 &805049785
 MonoBehaviour:
@@ -1938,7 +1937,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC810\uC218: 9999"
+  m_text: "\uC810\uC218: 0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98caa25839fac2942983a06698b0101f, type: 2}
   m_sharedMaterial: {fileID: 8610275499380727057, guid: 98caa25839fac2942983a06698b0101f, type: 2}
@@ -2795,8 +2794,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 144.29}
-  m_SizeDelta: {x: 264.24, y: 50}
+  m_AnchoredPosition: {x: 0, y: 139.8}
+  m_SizeDelta: {x: 328, y: 66.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1105609151
 MonoBehaviour:
@@ -2845,8 +2844,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4712,7 +4711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c60e5d8b4fc4e4bb11c35f2971e4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 1995429570}
+  scoreManager: {fileID: 1884199030}
   sourceText: "\uC810\uC218: {0}"
 --- !u!1 &1732846683
 GameObject:
@@ -4973,6 +4972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1884199028}
   - component: {fileID: 1884199029}
+  - component: {fileID: 1884199030}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5010,10 +5010,22 @@ MonoBehaviour:
   followCamera: {fileID: 894912770}
   obstacleSpawner: {fileID: 427548184}
   obstaclePool: {fileID: 277040803}
-  scoreManager: {fileID: 1995429570}
   titleCanvas: {fileID: 2096484444}
   inGameCanvas: {fileID: 286329975}
   gameOverCanvas: {fileID: 1490446948}
+--- !u!114 &1884199030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884199027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b62ccb0aa0073d4786aa0e4d04cf3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleSpawner: {fileID: 427548185}
 --- !u!224 &1885994172 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7150239326855350633, guid: e19fcd089be4b8a468189ec06d52d40e, type: 3}
@@ -5371,50 +5383,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1995429569
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1995429571}
-  - component: {fileID: 1995429570}
-  m_Layer: 0
-  m_Name: ScoreManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1995429570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995429569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b62ccb0aa0073d4786aa0e4d04cf3bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1995429571
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995429569}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2022954913
 GameObject:
   m_ObjectHideFlags: 0
@@ -6114,7 +6082,7 @@ PrefabInstance:
     - target: {fileID: 5816348199840868103, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: scoreManager
       value: 
-      objectReference: {fileID: 1995429570}
+      objectReference: {fileID: 1884199030}
     - target: {fileID: 5816348199840868103, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: gameOverCanvas
       value: 
@@ -6135,7 +6103,6 @@ SceneRoots:
   - {fileID: 1215700962}
   - {fileID: 660269897}
   - {fileID: 1884199028}
-  - {fileID: 1995429571}
   - {fileID: 1113971122}
   - {fileID: 449915632}
   - {fileID: 2096484448}

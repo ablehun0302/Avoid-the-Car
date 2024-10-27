@@ -41,6 +41,5 @@ public class PlayerCollision : MonoBehaviour
 
         //유저 데이터 수정
         BackendGameData.Instance.UserDataSet(scoreManager.Score, 0, other.gameObject.name);
-        BackendGameData.Instance.GameDataUpdate();
     }
 }

@@ -13,6 +13,7 @@ public class ScoreManager : MonoBehaviour
     public float Timer { get; set; } = 0f;
 
     PlayerMovement player;
+    [SerializeField] ObstacleSpawner obstacleSpawner;
 
     void Start()
     {
@@ -28,6 +29,13 @@ public class ScoreManager : MonoBehaviour
         {
             Score ++;
             Timer = 0;
+
+            switch (Score)
+            {
+                case 20:
+                    obstacleSpawner.SpawnSpecial();
+                    break;
+            }
         }
     }
 }

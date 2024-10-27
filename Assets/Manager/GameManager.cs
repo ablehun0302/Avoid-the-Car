@@ -11,10 +11,10 @@ public class GameManager : MonoBehaviour
     PlayerMovement player;
     PlayerCollision playerCollision;
     AudioSource bgmusic;
+    ScoreManager scoreManager;
     [SerializeField] CinemachineVirtualCamera followCamera;
     [SerializeField] GameObject obstacleSpawner;
     [SerializeField] Transform obstaclePool;
-    [SerializeField] ScoreManager scoreManager;
     [SerializeField] GameObject titleCanvas;
     [SerializeField] GameObject inGameCanvas;
     [SerializeField] GameObject gameOverCanvas;
@@ -24,9 +24,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Instance = this;
+
         player = PlayerMovement.Instance;
         playerCollision = player.GetComponent<PlayerCollision>();
         bgmusic = player.GetComponent<AudioSource>();
+        scoreManager = GetComponent<ScoreManager>();
     }
 
     /// <summary>

@@ -19,10 +19,8 @@ public class ObstacleSpawner : MonoBehaviour
 
     //[Header("스폰 설정")]
     int radius = 30;
-    bool isSpawnSpecial;
 
     PlayerMovement player;
-    [SerializeField] ScoreManager scoreManager;
     [SerializeField] Transform obstaclePool;
 
     void OnEnable()
@@ -32,27 +30,17 @@ public class ObstacleSpawner : MonoBehaviour
         //기본값 초기화
         currentSpawnRate = spawnRate;
         currentSpecialRate = specialRate;
-        isSpawnSpecial = false;
 
         //장애물 생성
         StopAllCoroutines();
-        StartCoroutine(SpawnObstacles());
-    }
-
-    void Update()
-    {
-        if (!isSpawnSpecial && scoreManager.Score == 20)
-        { 
-            StartCoroutine(SpawnSpecial());
-            isSpawnSpecial = true;
-        }
+        StartCoroutine(SpawnObstaclesRoutine());
     }
 
     /// <summary>
     /// 장애물을 생성하는 코루틴
     /// </summary>
     /// <returns></returns>
-    IEnumerator SpawnObstacles()
+    IEnumerator SpawnObstaclesRoutine()
     {
         while (true)
         {
@@ -70,7 +58,7 @@ public class ObstacleSpawner : MonoBehaviour
     /// 특수 장애물을 생성하는 코루틴
     /// </summary>
     /// <returns></returns>
-    public IEnumerator SpawnSpecial()
+    IEnumerator SpawnSpecialRoutine()
     {
         while(true)
         {
@@ -106,5 +94,13 @@ public class ObstacleSpawner : MonoBehaviour
         Vector2 direction = (player.transform.position - obstacle.transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         obstacle.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    /// <summary>
+    /// 특수 장애물 생성 코루틴 실행 메서드
+    /// </summary>
+    public void SpawnSpecial()
+    {
+        StartCoroutine(SpawnSpecialRoutine());
     }
 }

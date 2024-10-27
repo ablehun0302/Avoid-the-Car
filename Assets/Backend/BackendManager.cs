@@ -10,6 +10,12 @@ public class BackendManager : MonoBehaviour
 
     void Awake()
     {
+#if UNITY_EDITOR
+    Debug.unityLogger.logEnabled = true;
+#else
+    Debug.unityLogger.logEnabled = false;
+#endif
+
         //게임 시작 시 들어온 시간 체크
         startTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
@@ -43,6 +49,7 @@ public class BackendManager : MonoBehaviour
     //게임 종료 시 로그 기록
     void OnApplicationQuit()
     {
+        BackendGameData.Instance.GameDataUpdate();
         BackendGameLog.Instance.TimeLogInsert(startTime);
     }
 }
