@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Area
   - Obstacle
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Post Processing
   - 
   - 
   - 
@@ -51,4 +52,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1523069893
+    locked: 0
+  - name: Particle
+    uniqueID: 2394112005
     locked: 0

@@ -13,6 +13,8 @@ public class PlayerCollision : MonoBehaviour
     AudioSource bgmusic;
     Animator animator;
     [SerializeField] ScoreManager scoreManager;
+    [SerializeField] GameObject explosionVFX;
+    [SerializeField] GameObject hitVFX;
 
     void Start()
     {
@@ -31,15 +33,30 @@ public class PlayerCollision : MonoBehaviour
         if (!other.gameObject.CompareTag("Obstacle") || IsGameOver) { return; }
         
         IsGameOver = true;
+        string obstacleName = other.gameObject.name;
+
+        //부딛힌 좌표
+        ContactPoint2D contact = other.contacts[0];
+        Vector2 collisionPos = contact.point;
 
         //게임오버 동작 실행
         animator.SetBool("isDead", true);
         GameManager.Instance.GameOver();
+        
+        switch (obstacleName)   //파티클 생성
+        {
+            case "사람":
+                Instantiate(hitVFX, collisionPos, hitVFX.transform.rotation);
+                break;
+            default:
+                Instantiate(explosionVFX, collisionPos, explosionVFX.transform.rotation);
+                break;
+        }
 
         //유저 점수 로그 입력
-        BackendGameLog.Instance.DeadLogInsert(scoreManager.Score, other.gameObject.name);
+        BackendGameLog.Instance.DeadLogInsert(scoreManager.Score, obstacleName);
 
         //유저 데이터 수정
-        BackendGameData.Instance.UserDataSet(scoreManager.Score, 0, other.gameObject.name);
+        BackendGameData.Instance.UserDataSet(scoreManager.Score, 0, obstacleName);
     }
 }
