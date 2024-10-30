@@ -10,12 +10,12 @@ public class ObstacleSpawner : MonoBehaviour
     [Header("기본 장애물")]
     [SerializeField] GameObject[] obstaclePrefabs;
     [SerializeField] float spawnRate = 1;
-    float currentSpawnRate;
+    public float CurrentSpawnRate { get; set; }
     
     [Header("특수 장애물")]
     [SerializeField] GameObject[] specialPrefabs;
     [SerializeField] float specialRate = 10;
-    float currentSpecialRate;
+    public float CurrentSpecialRate { get; set; }
 
     //[Header("스폰 설정")]
     int radius = 30;
@@ -28,8 +28,8 @@ public class ObstacleSpawner : MonoBehaviour
         player = PlayerMovement.Instance;
         
         //기본값 초기화
-        currentSpawnRate = spawnRate;
-        currentSpecialRate = specialRate;
+        CurrentSpawnRate = spawnRate;
+        CurrentSpecialRate = specialRate;
 
         //장애물 생성
         StopAllCoroutines();
@@ -50,7 +50,7 @@ public class ObstacleSpawner : MonoBehaviour
             SetFirstPosition(obstacle);
             LookAtPlayer(obstacle);
 
-            yield return new WaitForSeconds(currentSpawnRate);
+            yield return new WaitForSeconds(CurrentSpawnRate);
         }
     }
 
@@ -68,7 +68,7 @@ public class ObstacleSpawner : MonoBehaviour
             SetFirstPosition(obstacle);
             LookAtPlayer(obstacle);
 
-            yield return new WaitForSeconds(currentSpecialRate);
+            yield return new WaitForSeconds(CurrentSpecialRate);
         }
     }
 

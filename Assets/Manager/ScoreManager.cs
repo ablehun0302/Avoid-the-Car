@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// 점수를 화면에 띄우는 것을 구현.
+/// 점수와 관련된 행동을 구현
 /// </summary>
 public class ScoreManager : MonoBehaviour
 {
@@ -13,11 +13,13 @@ public class ScoreManager : MonoBehaviour
     public float Timer { get; set; } = 0f;
 
     PlayerMovement player;
+    AudioSource bgmusic;
     [SerializeField] ObstacleSpawner obstacleSpawner;
 
     void Start()
     {
         player = PlayerMovement.Instance;
+        bgmusic = player.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -29,6 +31,14 @@ public class ScoreManager : MonoBehaviour
         {
             Score ++;
             Timer = 0;
+
+            if (Score % 20 == 0 && Score > 0)
+            {
+                bgmusic.pitch += 0.05f;
+
+                obstacleSpawner.CurrentSpawnRate -= 0.1f;
+                if (Score != 20) { obstacleSpawner.CurrentSpecialRate -= 0.2f; }
+            }
 
             switch (Score)
             {
