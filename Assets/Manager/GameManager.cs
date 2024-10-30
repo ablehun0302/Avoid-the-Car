@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// 게임의 흐름을 제어하는 메서드 모음
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
 {
     PlayerMovement player;
     PlayerCollision playerCollision;
+    Rigidbody2D playerRigidbody;
+    PlayerInput playerInput;
     AudioSource bgmusic;
     ScoreManager scoreManager;
     [SerializeField] CinemachineVirtualCamera followCamera;
@@ -27,6 +30,8 @@ public class GameManager : MonoBehaviour
 
         player = PlayerMovement.Instance;
         playerCollision = player.GetComponent<PlayerCollision>();
+        playerRigidbody = player.GetComponent<Rigidbody2D>();
+        playerInput = player.GetComponent<PlayerInput>();
         bgmusic = player.GetComponent<AudioSource>();
         scoreManager = GetComponent<ScoreManager>();
     }
@@ -59,6 +64,7 @@ public class GameManager : MonoBehaviour
     {
         //플레이어 움직임 활성화
         player.enabled = true;
+        playerInput.enabled = true;
 
         //카메라 활성화
         followCamera.enabled = true;
@@ -78,8 +84,9 @@ public class GameManager : MonoBehaviour
     {
         //장애물에 부딛힐 시 플레이어 움직임 정지
         player.enabled = false;
+        playerInput.enabled = false;
         //플레이어 공기저항 2로 변경 -> 사망 모션
-        player.GetComponent<Rigidbody2D>().drag = 2;
+        playerRigidbody.drag = 2;
 
         //카메라 비활성화
         followCamera.enabled = false;

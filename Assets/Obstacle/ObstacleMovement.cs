@@ -9,6 +9,7 @@ public class ObstacleMovement : MonoBehaviour
 {
     [SerializeField] float speed = 10;
     [SerializeField] string obstacleName;
+    int despawnRange = 100;
 
     Rigidbody2D rigidBody;
     Transform front;
@@ -23,7 +24,14 @@ public class ObstacleMovement : MonoBehaviour
     void FixedUpdate()
     {
         MoveForward();
-        Despawn();
+        //Despawn();
+    }
+    
+    //맵 경계 트리거를 벗어나면 오브젝트 삭제
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag("Area")) { return; }
+        Destroy(gameObject);
     }
 
     /// <summary>
@@ -42,6 +50,6 @@ public class ObstacleMovement : MonoBehaviour
     /// </summary>
     void Despawn()
     {
-        if (Vector2.Distance(Vector2.zero, transform.position) > 40) { Destroy(gameObject); }
+        if (Vector2.Distance(Vector2.zero, transform.position) > despawnRange) { Destroy(gameObject); }
     }
 }

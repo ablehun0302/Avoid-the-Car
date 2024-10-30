@@ -9,6 +9,7 @@ public class MaxScoreWriter : MonoBehaviour
 
     void OnEnable()
     {   
+        if (BackendGameData.userData == null) { return; }
         maxScoreText = GetComponent<TextMeshProUGUI>();
         maxScoreText.text = "최고 점수: " + BackendGameData.userData.maxScore;
     }

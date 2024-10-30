@@ -77,11 +77,11 @@ public class ObstacleSpawner : MonoBehaviour
     /// </summary>
     void SetFirstPosition(GameObject obstacle)
     {
-        float randomAngle = Random.Range(0, 360) * Mathf.Deg2Rad;
+        float randomAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
 
         Vector2 randomDirection = new Vector2( Mathf.Cos(randomAngle), Mathf.Sin(randomAngle) );
 
-        Vector2 randomPosition = randomDirection * radius;
+        Vector2 randomPosition = (randomDirection * radius) + (Vector2)player.transform.position;
 
         obstacle.transform.position = randomPosition;
     }

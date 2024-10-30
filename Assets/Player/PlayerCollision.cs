@@ -35,13 +35,13 @@ public class PlayerCollision : MonoBehaviour
         IsGameOver = true;
         string obstacleName = other.gameObject.name;
 
-        //부딛힌 좌표
-        ContactPoint2D contact = other.contacts[0];
-        Vector2 collisionPos = contact.point;
-
         //게임오버 동작 실행
         animator.SetBool("isDead", true);
         GameManager.Instance.GameOver();
+        
+        //부딛힌 좌표
+        ContactPoint2D contact = other.contacts[0];
+        Vector2 collisionPos = contact.point;
         
         switch (obstacleName)   //파티클 생성
         {
@@ -54,6 +54,7 @@ public class PlayerCollision : MonoBehaviour
         }
 
         //유저 점수 로그 입력
+        if ( BackendGameData.userData == null ) { return; }
         BackendGameLog.Instance.DeadLogInsert(scoreManager.Score, obstacleName);
 
         //유저 데이터 수정

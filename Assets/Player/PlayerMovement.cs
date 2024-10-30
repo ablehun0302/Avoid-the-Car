@@ -9,8 +9,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed = 10;      //플레이어의 이동속도
-    [SerializeField] float xRange = 20;     //x 값 범위
-    [SerializeField] float yRange = 20;  //y 값 범위
+    [SerializeField] float xRange = 59;     //x 값 범위
+    [SerializeField] float yRange = 59;  //y 값 범위
 
     Vector2 moveInput;  //플레이어 인풋시스템
 
