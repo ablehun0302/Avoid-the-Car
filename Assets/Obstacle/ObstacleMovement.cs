@@ -9,7 +9,7 @@ public class ObstacleMovement : MonoBehaviour
 {
     [SerializeField] float speed = 10;
     [SerializeField] string obstacleName;
-    int despawnRange = 100;
+    ScoreManager scoreManager;
 
     Rigidbody2D rigidBody;
     Transform front;
@@ -21,10 +21,14 @@ public class ObstacleMovement : MonoBehaviour
         gameObject.name = obstacleName;
     }
 
+    void Start()
+    {
+        scoreManager = ScoreManager.Instance;
+    }
+
     void FixedUpdate()
     {
         MoveForward();
-        //Despawn();
     }
     
     //맵 경계 트리거를 벗어나면 오브젝트 삭제
@@ -41,15 +45,6 @@ public class ObstacleMovement : MonoBehaviour
     {
         Vector2 direction = (front.position - transform.position).normalized;
 
-        //rigidBody.velocity = direction * speed;
-        rigidBody.AddForce(direction * speed, ForceMode2D.Force);
-    }
-
-    /// <summary>
-    /// 장애물이 맵을 벗어나면 사라지도록 하는 메서드
-    /// </summary>
-    void Despawn()
-    {
-        if (Vector2.Distance(Vector2.zero, transform.position) > despawnRange) { Destroy(gameObject); }
+        rigidBody.AddForce(direction * speed * scoreManager.SpeedFactor, ForceMode2D.Force);
     }
 }

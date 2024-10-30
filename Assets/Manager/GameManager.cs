@@ -10,11 +10,11 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     PlayerMovement player;
+    ScoreManager scoreManager;
     PlayerCollision playerCollision;
     Rigidbody2D playerRigidbody;
     PlayerInput playerInput;
     AudioSource bgmusic;
-    ScoreManager scoreManager;
     [SerializeField] CinemachineVirtualCamera followCamera;
     [SerializeField] GameObject obstacleSpawner;
     [SerializeField] Transform obstaclePool;
@@ -29,11 +29,11 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         player = PlayerMovement.Instance;
+        scoreManager = ScoreManager.Instance;
         playerCollision = player.GetComponent<PlayerCollision>();
         playerRigidbody = player.GetComponent<Rigidbody2D>();
         playerInput = player.GetComponent<PlayerInput>();
         bgmusic = player.GetComponent<AudioSource>();
-        scoreManager = GetComponent<ScoreManager>();
     }
 
     /// <summary>

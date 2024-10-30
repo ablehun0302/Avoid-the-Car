@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// 플레이어 충돌과 이후 이벤트를 구현
@@ -10,9 +11,10 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     public bool IsGameOver { get; set; } = false;
+    bool cheat = false;
     AudioSource bgmusic;
     Animator animator;
-    [SerializeField] ScoreManager scoreManager;
+    ScoreManager scoreManager;
     [SerializeField] GameObject explosionVFX;
     [SerializeField] GameObject hitVFX;
 
@@ -20,6 +22,7 @@ public class PlayerCollision : MonoBehaviour
     {
         bgmusic = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+        scoreManager = ScoreManager.Instance;
     }
 
     void Update()
@@ -28,9 +31,18 @@ public class PlayerCollision : MonoBehaviour
         if (bgmusic.pitch > 0) { bgmusic.pitch -= Time.deltaTime / 2; }
     }
 
+    void OnCheat(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            cheat = !cheat;
+        }
+        Debug.Log(cheat);
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (!other.gameObject.CompareTag("Obstacle") || IsGameOver) { return; }
+        if (!other.gameObject.CompareTag("Obstacle") || IsGameOver || cheat) { return; }
         
         IsGameOver = true;
         string obstacleName = other.gameObject.name;
