@@ -47,9 +47,10 @@ public class GameManager : MonoBehaviour
             Destroy(obstacle.gameObject);
         }
 
-        //점수 0으로 초기화
+        //scoreManager 초기화
         scoreManager.Score = 0;
         scoreManager.Timer = 0;
+        scoreManager.SpeedFactor = 1f;
 
         playerCollision.IsGameOver = false;
         bgmusic.Stop();

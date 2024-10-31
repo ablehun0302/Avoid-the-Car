@@ -9,10 +9,11 @@ using UnityEngine;
 /// </summary>
 public class ScoreManager : MonoBehaviour
 {
-    public int Score { get; set;} = 0;
+    public int Score { get; set;} = 0;      //점수
+    public int Second { get; set; } = 0;    //시간 표시용 변수
     public float Timer { get; set; } = 0f;
 
-    public float SpeedFactor { get; private set; } = 1f;
+    public float SpeedFactor { get; set; } = 1f;
     
     public static ScoreManager Instance { get; set; }
     PlayerMovement player;
