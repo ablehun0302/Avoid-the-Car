@@ -11792,7 +11792,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c60e5d8b4fc4e4bb11c35f2971e4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 1884199030}
   sourceText: "\uC810\uC218: {0}"
 --- !u!114 &805049785
 MonoBehaviour:
@@ -25340,7 +25339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c60e5d8b4fc4e4bb11c35f2971e4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 1884199030}
   sourceText: "\uC810\uC218: {0}"
 --- !u!1 &1651258385
 GameObject:
@@ -35020,10 +35018,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5816348199840868103, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
-      propertyPath: scoreManager
-      value: 
-      objectReference: {fileID: 1884199030}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

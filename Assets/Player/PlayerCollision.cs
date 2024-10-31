@@ -10,13 +10,14 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerCollision : MonoBehaviour
 {
-    public bool IsGameOver { get; set; } = false;
-    bool cheat = false;
-    AudioSource bgmusic;
-    Animator animator;
+    public bool IsGameOver { get; set; } = false;   //게임 오버
+    bool cheat = false;         //치트 변수 - 무적상태로 변함
+
+    AudioSource bgmusic;        //배경음악
+    Animator animator;          //플레이어 텍스쳐 변환용 애니메이터
     ScoreManager scoreManager;
-    [SerializeField] GameObject explosionVFX;
-    [SerializeField] GameObject hitVFX;
+    [SerializeField] GameObject explosionVFX;   //폭파 파티클
+    [SerializeField] GameObject hitVFX;         //부딪힘 파티클
 
     void Start()
     {
