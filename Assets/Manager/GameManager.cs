@@ -49,10 +49,12 @@ public class GameManager : MonoBehaviour
 
         //scoreManager 초기화
         scoreManager.Score = 0;
-        scoreManager.Timer = 0;
+        scoreManager.ElapsedSec = 0;
+        scoreManager.SecDividedByTen = 0;
         scoreManager.SpeedFactor = 1f;
 
         playerCollision.IsGameOver = false;
+
         bgmusic.Stop();
         bgmusic.pitch = 1;
         bgmusic.Play();
@@ -67,15 +69,16 @@ public class GameManager : MonoBehaviour
         player.enabled = true;
         playerInput.enabled = true;
 
-        //카메라 활성화
         followCamera.enabled = true;
 
-        //장애물 생성
         obstacleSpawner.SetActive(true);
 
         titleCanvas.SetActive(false);
         inGameCanvas.SetActive(true);   //인게임 캔버스 켜기
         gameOverCanvas.SetActive(false);
+
+        //스코어 더하기 실행
+        scoreManager.EventCoroutine();
     }
 
     /// <summary>
@@ -86,16 +89,15 @@ public class GameManager : MonoBehaviour
         //장애물에 부딛힐 시 플레이어 움직임 정지
         player.enabled = false;
         playerInput.enabled = false;
-        //플레이어 공기저항 2로 변경 -> 사망 모션
-        playerRigidbody.drag = 2;
+        playerRigidbody.drag = 2; //사망 모션
 
-        //카메라 비활성화
         followCamera.enabled = false;
 
-        //장애물 생성 중지
         obstacleSpawner.SetActive(false);
 
-        //재시작 버튼 표시, 점수판 캔버스 비활성화
+        //스코어 더하기 중지
+        scoreManager.StopAllCoroutines();
+
         inGameCanvas.SetActive(false);
         gameOverCanvas.SetActive(true);
     }
