@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
-    void OnEnable()
+    void Awake()
     {
         Instance = this;
     }

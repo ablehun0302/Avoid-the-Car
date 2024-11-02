@@ -11,7 +11,7 @@ public class ScoreWriter : MonoBehaviour
     TextMeshProUGUI scoreText;
     ScoreManager scoreManager;
 
-    void OnEnable()
+    void Start()
     {
         scoreText = GetComponent<TextMeshProUGUI>();
         scoreManager = ScoreManager.Instance;

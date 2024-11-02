@@ -29,9 +29,13 @@ public class ScoreManager : MonoBehaviour
     AudioSource bgmusic;
     [SerializeField] ObstacleSpawner obstacleSpawner;
 
-    void OnEnable()
+    void Awake()
     {
         Instance = this;
+    }
+
+    void Start()
+    {
         player = PlayerMovement.Instance;
         bgmusic = player.GetComponent<AudioSource>();
     }
@@ -44,7 +48,7 @@ public class ScoreManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSeconds(0.1f);
             Score += scoreIncreasement;
             SecDividedByTen ++;
             if (SecDividedByTen >= 10)

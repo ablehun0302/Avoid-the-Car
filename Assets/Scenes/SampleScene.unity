@@ -12231,6 +12231,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4569962649619756530, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
   m_PrefabInstance: {fileID: 6828890898339442272}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &823572851 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 16397174288616804, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
+  m_PrefabInstance: {fileID: 6828890898339442272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &829887352
 GameObject:
   m_ObjectHideFlags: 0
@@ -29433,6 +29438,7 @@ MonoBehaviour:
   speedIncreasement: 0.11
   spawnRateReduction: 0.1
   specialRateReduction: 0.2
+  bgmusic: {fileID: 823572851}
   obstacleSpawner: {fileID: 427548185}
 --- !u!1 &1884895148
 GameObject:
