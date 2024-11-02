@@ -13,8 +13,6 @@ public class ObstacleMovement : MonoBehaviour
     Rigidbody2D rigidBody;
     Transform front;
     ScoreManager scoreManager;
-    GameManager gameManager;
-    PlayerCollision playerCollision;
 
     void OnEnable()
     {
@@ -22,8 +20,6 @@ public class ObstacleMovement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         front = transform.GetChild(0);
         scoreManager = ScoreManager.Instance;
-        gameManager = GameManager.Instance;
-        playerCollision = PlayerMovement.Instance.GetComponent<PlayerCollision>();
     }
 
     void FixedUpdate()
@@ -36,18 +32,7 @@ public class ObstacleMovement : MonoBehaviour
         if (other.CompareTag("Area")) { Destroy(gameObject); }
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(IncreaseBonusScore());
-        }
-    }
-
-    IEnumerator IncreaseBonusScore()
-    {
-        yield return null;
-        if (!gameManager.IsGameOver)
-        {
-            scoreManager.Score += 1000;
-            Instantiate(playerCollision.fireworkVFX, playerCollision.transform.position, playerCollision.fireworkVFX.transform.rotation);
-            Debug.Log("보너스점수");
+            StartCoroutine(scoreManager.IncreaseBonusScore());
         }
     }
 

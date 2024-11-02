@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,7 +14,6 @@ public class PlayerCollision : MonoBehaviour
     GameManager gameManager;
     [SerializeField] GameObject explosionVFX;   //폭파 파티클
     [SerializeField] GameObject hitVFX;         //부딪힘 파티클
-    public GameObject fireworkVFX;
 
     void Start()
     {

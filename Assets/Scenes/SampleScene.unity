@@ -8425,7 +8425,6 @@ GameObject:
   - component: {fileID: 579912097}
   - component: {fileID: 579912100}
   - component: {fileID: 579912099}
-  - component: {fileID: 579912098}
   m_Layer: 5
   m_Name: DashCooldownImage
   m_TagString: Untagged
@@ -8452,18 +8451,6 @@ RectTransform:
   m_AnchoredPosition: {x: -216.00006, y: 153}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &579912098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579912096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7427adec3a9f44399cea19cecfc9c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &579912099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29523,6 +29510,7 @@ MonoBehaviour:
   spawnRateReduction: 0.1
   specialRateReduction: 0.2
   obstacleSpawner: {fileID: 427548185}
+  fireworkVFX: {fileID: 1978689737715041617, guid: 2382badbd5fb9e845a6bbbdac6460b07, type: 3}
 --- !u!1 &1884895148
 GameObject:
   m_ObjectHideFlags: 0
@@ -35266,6 +35254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3125650039674875708, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
+      propertyPath: cooldownImage
+      value: 
+      objectReference: {fileID: 579912099}
     - target: {fileID: 4569962649619756530, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

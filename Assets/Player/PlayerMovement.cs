@@ -2,26 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 /// <summary>
 /// 플레이어의 움직임을 구현
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    Vector2 moveInput;  //플레이어 인풋시스템
     [SerializeField] float speed = 100;      //플레이어의 이동속도
     [SerializeField] float dashSpeed = 20;  //플레이어 대쉬속도
     [SerializeField] float xRange = 59;     //x 값 범위
     [SerializeField] float yRange = 59;  //y 값 범위
 
-    Vector2 moveInput;  //플레이어 인풋시스템
     bool hasDash = true;
-    public float Timer { get; set; } = 0f;
+    float timer = 0f;
+    float dashInvulnerableTime = 0.5f;
+    float dashCooldownTime = 5;
 
     public static PlayerMovement Instance { get; private set; }
     Rigidbody2D playerRigidbody;
     Collider2D playerCollider;
     Animator animator;
     [SerializeField] Transform playerFront;
+    [SerializeField] Image cooldownImage;
 
     void Awake()
     {
@@ -37,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = Vector2.zero;
         playerRigidbody.velocity = Vector2.zero;
         playerRigidbody.angularVelocity = 0;
-        DashCooltime();
+        DashRestore();
 
         animator.SetBool("isDead", false);
     }
@@ -72,11 +76,14 @@ public class PlayerMovement : MonoBehaviour
         //대쉬 소모 시
         if (!hasDash)
         {
-            Timer += Time.deltaTime;
+            timer += Time.deltaTime;
 
-            if (Timer >= 0.5f) { playerCollider.enabled = true; }
+            if (timer >= dashInvulnerableTime) { playerCollider.enabled = true; }
             
-            if (Timer >= 5f) { DashCooltime(); }
+            if (timer >= dashCooldownTime) { DashRestore(); }
+
+            if (timer == 0) { cooldownImage.fillAmount = 1; }
+            else { cooldownImage.fillAmount = timer / dashCooldownTime; }
         }
     }
 
@@ -95,9 +102,10 @@ public class PlayerMovement : MonoBehaviour
         transform.position = clampedPosition;
     }
 
-    void DashCooltime()
+    void DashRestore()
     {
         hasDash = true;
-        Timer = 0f;
+        timer = 0f;
+        cooldownImage.fillAmount = 1;
     }
 }

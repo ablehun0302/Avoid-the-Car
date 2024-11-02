@@ -26,8 +26,10 @@ public class ScoreManager : MonoBehaviour
 
     public static ScoreManager Instance { get; set; }
     PlayerMovement player;
+    GameManager gameManager;
     AudioSource bgmusic;
     [SerializeField] ObstacleSpawner obstacleSpawner;
+    [SerializeField] GameObject fireworkVFX;
 
     void Awake()
     {
@@ -37,6 +39,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         player = PlayerMovement.Instance;
+        gameManager = GameManager.Instance;
         bgmusic = player.GetComponent<AudioSource>();
     }
 
@@ -87,5 +90,16 @@ public class ScoreManager : MonoBehaviour
     public void EventCoroutine()
     {
         StartCoroutine(TimeBasedEvents());
+    }
+
+    public IEnumerator IncreaseBonusScore()
+    {
+        yield return null;
+        if (!gameManager.IsGameOver)
+        {
+            Score += 1000;
+            Instantiate(fireworkVFX, player.transform.position, fireworkVFX.transform.rotation);
+            Debug.Log("보너스점수");
+        }
     }
 }
