@@ -9,19 +9,21 @@ public class ObstacleMovement : MonoBehaviour
 {
     [SerializeField] float speed = 10;
     [SerializeField] string obstacleName;
-    ScoreManager scoreManager;
-    GameManager gameManager;
 
     Rigidbody2D rigidBody;
     Transform front;
+    ScoreManager scoreManager;
+    GameManager gameManager;
+    PlayerCollision playerCollision;
 
     void OnEnable()
     {
+        gameObject.name = obstacleName;
         rigidBody = GetComponent<Rigidbody2D>();
         front = transform.GetChild(0);
-        gameObject.name = obstacleName;
         scoreManager = ScoreManager.Instance;
         gameManager = GameManager.Instance;
+        playerCollision = PlayerMovement.Instance.GetComponent<PlayerCollision>();
     }
 
     void FixedUpdate()
@@ -44,6 +46,7 @@ public class ObstacleMovement : MonoBehaviour
         if (!gameManager.IsGameOver)
         {
             scoreManager.Score += 1000;
+            Instantiate(playerCollision.fireworkVFX, playerCollision.transform.position, playerCollision.fireworkVFX.transform.rotation);
             Debug.Log("보너스점수");
         }
     }

@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionVFX: {fileID: 2433282508537954060, guid: 20f200ea53655464abccea2e51733286, type: 3}
   hitVFX: {fileID: 141433446842962269, guid: a210185402b78af48a4a89e878f64827, type: 3}
+  fireworkVFX: {fileID: 1978689737715041617, guid: 2382badbd5fb9e845a6bbbdac6460b07, type: 3}
 --- !u!58 &3464592950503756196
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -431,7 +432,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.67
+  m_Radius: 0.4
 --- !u!1 &8899988201622908235
 GameObject:
   m_ObjectHideFlags: 0

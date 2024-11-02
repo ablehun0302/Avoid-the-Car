@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 moveInput;  //플레이어 인풋시스템
     bool hasDash = true;
-    float timer = 0f;
+    public float Timer { get; set; } = 0f;
 
     public static PlayerMovement Instance { get; private set; }
     Rigidbody2D playerRigidbody;
@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = Vector2.zero;
         playerRigidbody.velocity = Vector2.zero;
         playerRigidbody.angularVelocity = 0;
+        DashCooltime();
 
         animator.SetBool("isDead", false);
     }
@@ -68,14 +69,14 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
 
-        //대쉬 소모 시 일정 시간동안 메서드 실행
+        //대쉬 소모 시
         if (!hasDash)
         {
-            timer += Time.deltaTime;
+            Timer += Time.deltaTime;
 
-            if (timer >= 0.5f) { playerCollider.enabled = true; }
+            if (Timer >= 0.5f) { playerCollider.enabled = true; }
             
-            if (timer >= 5f) { DashCooltime(); }
+            if (Timer >= 5f) { DashCooltime(); }
         }
     }
 
@@ -97,6 +98,6 @@ public class PlayerMovement : MonoBehaviour
     void DashCooltime()
     {
         hasDash = true;
-        timer = 0f;
+        Timer = 0f;
     }
 }
