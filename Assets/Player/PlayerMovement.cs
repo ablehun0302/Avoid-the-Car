@@ -73,10 +73,9 @@ public class PlayerMovement : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            if (timer >= 0.5f) { EnableCollision(); }
+            if (timer >= 0.5f) { playerCollider.enabled = true; }
             
-            if (timer < 5f) { return; }
-            DashCooltime();
+            if (timer >= 5f) { DashCooltime(); }
         }
     }
 
@@ -93,14 +92,6 @@ public class PlayerMovement : MonoBehaviour
         clampedPosition.y = Mathf.Clamp(clampedPosition.y, -yRange, yRange);
 
         transform.position = clampedPosition;
-    }
-
-    /// <summary>
-    /// 플레이어 충돌을 활성화
-    /// </summary>
-    void EnableCollision()
-    {
-        playerCollider.enabled = true;
     }
 
     void DashCooltime()

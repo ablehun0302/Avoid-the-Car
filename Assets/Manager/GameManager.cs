@@ -9,6 +9,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    public bool IsGameOver { get; private set; } = false;
+
     PlayerMovement player;
     ScoreManager scoreManager;
     PlayerCollision playerCollision;
@@ -24,16 +26,25 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
-    void Start()
+    void OnEnable()
     {
         Instance = this;
+    }
 
+    void Start()
+    {
         player = PlayerMovement.Instance;
         scoreManager = ScoreManager.Instance;
         playerCollision = player.GetComponent<PlayerCollision>();
         playerRigidbody = player.GetComponent<Rigidbody2D>();
         playerInput = player.GetComponent<PlayerInput>();
         bgmusic = player.GetComponent<AudioSource>();
+    }
+
+    void Update()
+    {
+        if (!IsGameOver) { return; }
+        if (bgmusic.pitch > 0) { bgmusic.pitch -= Time.deltaTime / 2; }
     }
 
     /// <summary>
@@ -53,7 +64,7 @@ public class GameManager : MonoBehaviour
         scoreManager.SecDividedByTen = 0;
         scoreManager.SpeedFactor = 1f;
 
-        playerCollision.IsGameOver = false;
+        IsGameOver = false;
 
         bgmusic.Stop();
         bgmusic.pitch = 1;
@@ -86,6 +97,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
+        IsGameOver = true;
+
         //장애물에 부딛힐 시 플레이어 움직임 정지
         player.enabled = false;
         playerInput.enabled = false;

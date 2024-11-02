@@ -55,7 +55,7 @@ public class ScoreManager : MonoBehaviour
             
             if (SecDividedByTen != 0) { continue; }
 
-            Debug.Log("ElapsedSec : " + ElapsedSec);
+            //Debug.Log("ElapsedSec : " + ElapsedSec);
             //20초마다 실행되는
             if (ElapsedSec % eventInterval == 0)
             {
@@ -65,9 +65,9 @@ public class ScoreManager : MonoBehaviour
                 obstacleSpawner.CurrentSpawnRate -= spawnRateReduction;
                 if (ElapsedSec != 20) { obstacleSpawner.CurrentSpecialRate -= specialRateReduction; }
 
-                Debug.Log("-------------\nSpeedFactor: " + SpeedFactor
+                /*Debug.Log("-------------\nSpeedFactor: " + SpeedFactor
                          +"\nSpawnRate: " + obstacleSpawner.CurrentSpawnRate
-                         +"\nSpecialRate: " + obstacleSpawner.CurrentSpecialRate);
+                         +"\nSpecialRate: " + obstacleSpawner.CurrentSpecialRate);*/
             }
 
             //특정 초마다 추가되는

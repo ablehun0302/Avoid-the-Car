@@ -10,6 +10,7 @@ public class ObstacleMovement : MonoBehaviour
     [SerializeField] float speed = 10;
     [SerializeField] string obstacleName;
     ScoreManager scoreManager;
+    GameManager gameManager;
 
     Rigidbody2D rigidBody;
     Transform front;
@@ -19,11 +20,8 @@ public class ObstacleMovement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         front = transform.GetChild(0);
         gameObject.name = obstacleName;
-    }
-
-    void Start()
-    {
         scoreManager = ScoreManager.Instance;
+        gameManager = GameManager.Instance;
     }
 
     void FixedUpdate()
@@ -31,11 +29,23 @@ public class ObstacleMovement : MonoBehaviour
         MoveForward();
     }
     
-    //맵 경계 트리거를 벗어나면 오브젝트 삭제
     void OnTriggerExit2D(Collider2D other)
     {
-        if (!other.CompareTag("Area")) { return; }
-        Destroy(gameObject);
+        if (other.CompareTag("Area")) { Destroy(gameObject); }
+        if (other.CompareTag("Player"))
+        {
+            StartCoroutine(IncreaseBonusScore());
+        }
+    }
+
+    IEnumerator IncreaseBonusScore()
+    {
+        yield return null;
+        if (!gameManager.IsGameOver)
+        {
+            scoreManager.Score += 1000;
+            Debug.Log("보너스점수");
+        }
     }
 
     /// <summary>
