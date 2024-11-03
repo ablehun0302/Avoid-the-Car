@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BackEnd;
+using UnityEngine.SceneManagement;
 
 public class BackendLogin
 {
@@ -39,7 +40,7 @@ public class BackendLogin
         }
     }
 
-    public void CustomSignUp(string id, string pw)
+    public int CustomSignUp(string id, string pw)
     {
         Debug.Log("회원가입을 요청합니다.");
 
@@ -48,14 +49,18 @@ public class BackendLogin
         if (bro.IsSuccess())
         {
             Debug.Log("회원가입에 성공하였습니다. : " + bro);
+            Debug.Log("로그인을 시도합니다.");
+            CustomLogin(id, pw);
+            return 0;
         }
         else
         {
             Debug.LogError("회원가입에 실패하였습니다. : " + bro);
         }
+        return bro.StatusCode;
     }
 
-    public void CustomLogin(string id, string pw)
+    public int CustomLogin(string id, string pw)
     {
         Debug.Log("로그인을 요청합니다.");
 
@@ -64,11 +69,18 @@ public class BackendLogin
         if (bro.IsSuccess())
         {
             Debug.Log("로그인이 성공했습니다. : " + bro);
+            return 0;
+        }
+        else if (bro.StatusCode == 401)
+        {
+            Debug.LogError("회원가입을 시도합니다.");
+            return CustomSignUp(id, pw);
         }
         else
         {
             Debug.LogError("로그인이 실패했습니다. : " + bro);
         }
+        return bro.StatusCode;
     }
 
     public void UpdateNickname(string nickname)

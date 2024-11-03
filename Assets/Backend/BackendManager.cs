@@ -1,12 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using BackEnd;
 using System;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BackendManager : MonoBehaviour
 {
     string startTime;
+    [SerializeField] GameObject idField;
+    [SerializeField] GameObject pwField;
+    [SerializeField] TextMeshProUGUI infoText;
 
     void Awake()
     {
@@ -15,6 +19,7 @@ public class BackendManager : MonoBehaviour
 #else
     Debug.unityLogger.logEnabled = false;
 #endif
+        DontDestroyOnLoad(gameObject);
 
         //게임 시작 시 들어온 시간 체크
         startTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -30,7 +35,7 @@ public class BackendManager : MonoBehaviour
             Debug.LogError("초기화 실패 : " + bro);
         }
 
-        Login();
+        //Login(); 게스트로그인
     }
 
     void Login()
@@ -46,9 +51,40 @@ public class BackendManager : MonoBehaviour
         }
     }
 
+    public void CustomLoginButton()
+    {
+        TMP_InputField idInput = idField.GetComponent<TMP_InputField>();
+        TMP_InputField pwInput = pwField.GetComponent<TMP_InputField>();
+
+        string idText = idInput.text;
+        string pwText = pwInput.text;
+
+        int LoginState = BackendLogin.Instance.CustomLogin(idText, pwText);
+
+        Debug.Log(LoginState);
+
+        if (LoginState != 0)
+        {
+            infoText.text = "아이디와 비밀번호가 일치하지 않거나, 형식에 맞지 않습니다."+
+                            "\n모든 문자는 영문 또는 숫자여야 합니다.";
+            return;
+        }
+
+        BackendGameData.Instance.GameDataGet(); //데이터 불러오기
+
+        // [추가] 서버에 불러온 데이터가 존재하지 않을 경우, 데이터를 새로 생성하여 삽입
+        if (BackendGameData.userData == null)
+        {
+            BackendGameData.Instance.GameDataInsert();
+        }
+
+        SceneManager.LoadScene(1);
+    }
+
     //게임 종료 시 로그 기록
     void OnApplicationQuit()
     {
+        if (BackendGameData.Instance == null) { return; }
         BackendGameData.Instance.GameDataUpdate();
         BackendGameLog.Instance.TimeLogInsert(startTime);
     }
