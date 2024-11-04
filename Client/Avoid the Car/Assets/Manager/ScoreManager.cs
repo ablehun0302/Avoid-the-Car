@@ -15,14 +15,14 @@ public class ScoreManager : MonoBehaviour
 
     public float SpeedFactor { get; set; } = 1f;
 
-    [Header("난이도, 점수 조절값")]
-    [SerializeField] int eventInterval = 20;
-    [SerializeField] int scoreIncreasement = 10;
-    [SerializeField] float pitchIncreasement = 0.05f;
+    //난이도, 점수 조절값
+    int eventInterval = 20;
+    int scoreIncreasement = 10;
+    float pitchIncreasement = 0.05f;
 
-    [SerializeField] float speedIncreasement = 0.11f;
-    [SerializeField] float spawnRateReduction = 0.1f;
-    [SerializeField] float specialRateReduction = 0.2f;
+    float speedIncreasement = 0.11f;
+    float spawnRateReduction = 0.1f;
+    float specialRateReduction = 0.2f;
 
     public static ScoreManager Instance { get; set; }
     PlayerMovement player;
