@@ -25,8 +25,8 @@ public class TimeWriter : MonoBehaviour
     void Update()
     {
         milisec = scoreManager.SecDividedByTen * 10;
-        sec = scoreManager.ElapsedSec;
-        minute = (sec == 0) ? 0 : sec / 60;
+        sec = scoreManager.ElapsedSec % 60;
+        minute = scoreManager.ElapsedSec / 60;
 
         milisecString = milisec.ToString("D2");
         secString = sec.ToString("D2");

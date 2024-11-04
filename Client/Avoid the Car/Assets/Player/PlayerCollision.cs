@@ -22,14 +22,14 @@ public class PlayerCollision : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
-    void OnCheat(InputValue value)
+    /*void OnCheat(InputValue value)
     {
         if(value.isPressed)
         {
             cheat = !cheat;
         }
         Debug.Log(cheat);
-    }
+    }*/
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -38,7 +38,7 @@ public class PlayerCollision : MonoBehaviour
         //게임오버 동작 실행
         animator.SetBool("isDead", true);
         gameManager.GameOver();
-        Debug.Log("플레이어 충돌" + gameManager.IsGameOver);
+        //Debug.Log("플레이어 충돌" + gameManager.IsGameOver);
 
         //부딛힌 좌표
         ContactPoint2D contact = other.contacts[0];

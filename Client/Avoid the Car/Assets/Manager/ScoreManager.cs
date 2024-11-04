@@ -99,7 +99,7 @@ public class ScoreManager : MonoBehaviour
         {
             Score += 1000;
             Instantiate(fireworkVFX, player.transform.position, fireworkVFX.transform.rotation);
-            Debug.Log("보너스점수");
+            //Debug.Log("보너스점수");
         }
     }
 }
