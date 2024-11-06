@@ -58,7 +58,7 @@ public class PlayerCollision : MonoBehaviour
 
         //유저 점수 로그 입력
         if ( BackendGameData.userData == null ) { return; }
-        BackendGameLog.Instance.DeadLogInsert(scoreManager.Score, obstacleName);
+        BackendGameLog.Instance.DeadLogInsert(scoreManager.Score, scoreManager.ElapsedSec, obstacleName);
 
         //유저 데이터 수정
         BackendGameData.Instance.UserDataSet(scoreManager.Score, 0, obstacleName);

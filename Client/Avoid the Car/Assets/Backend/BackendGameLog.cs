@@ -30,7 +30,7 @@ public class BackendGameLog
         string exitTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
         Param param = new Param();
-        
+
         param.Add("exitTime", exitTime);
         param.Add("startTime", startTime);
 
@@ -39,7 +39,7 @@ public class BackendGameLog
         var bro = Backend.GameLog.InsertLogV2("ExitGame", param);
 
         if (bro.IsSuccess() == false)
-        {   
+        {
             Debug.LogError("게임 로그 삽입 중 에러가 발생했습니다. : " + bro);
             return;
         }
@@ -52,25 +52,28 @@ public class BackendGameLog
     /// </summary>
     /// <param name="score">점수</param>
     /// <param name="something">부딛힌 장애물</param>
-    public void DeadLogInsert(int score, string something)
+    public void DeadLogInsert(int score, int time, string something)
     {
-        int scoreRange = ( score / 10 ) * 10;
+        int scoreRange = (score / 1000) * 1000;
+        int timeRange = (time / 10) * 10;
 
         Param param = new Param();
-        
+
         param.Add("scoreRange", scoreRange);
+        param.Add("timeRange", timeRange);
         param.Add("deadBy", something);
 
         Debug.Log("게임 로그 삽입을 시도합니다.");
 
-        var bro = Backend.GameLog.InsertLogV2("GameScore", param);
+        Backend.GameLog.InsertLogV2("GameScore", param, callback =>
+        {
+            if (callback.IsSuccess() == false)
+            {
+                Debug.LogError("게임 로그 삽입 중 에러가 발생했습니다. : " + callback);
+                return;
+            }
 
-        if (bro.IsSuccess() == false)
-        {   
-            Debug.LogError("게임 로그 삽입 중 에러가 발생했습니다. : " + bro);
-            return;
-        }
-
-        Debug.Log("게임 로그 삽입에 성공했습니다. : " + bro);
+            Debug.Log("게임 로그 삽입에 성공했습니다. : " + callback);
+        });
     }
 }

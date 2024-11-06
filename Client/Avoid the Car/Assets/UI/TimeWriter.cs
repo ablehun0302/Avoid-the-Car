@@ -31,6 +31,6 @@ public class TimeWriter : MonoBehaviour
         milisecString = milisec.ToString("D2");
         secString = sec.ToString("D2");
 
-        timerText.text = minute + ":" + secString + "." + milisecString;
+        timerText.text = sourceText + " " +minute + ":" + secString + "." + milisecString;
     }
 }
