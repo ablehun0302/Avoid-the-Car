@@ -68,15 +68,16 @@ public class BackendRank
 
         // 추출된 rowIndate를 가진 데이터에 param값으로 수정을 진행하고 랭킹에 데이터를 업데이트합니다.  
         Debug.Log("랭킹 삽입을 시도합니다.");
-        var rankBro = Backend.URank.User.UpdateUserScore(rankUUID, tableName, rowInDate, param);
-
-        if (rankBro.IsSuccess() == false)
+        Backend.URank.User.UpdateUserScore(rankUUID, tableName, rowInDate, param, callback =>
         {
-            Debug.LogError("랭킹 등록 중 오류가 발생했습니다. : " + rankBro);
-            return;
-        }
+            if (callback.IsSuccess() == false)
+            {
+                Debug.LogError("랭킹 등록 중 오류가 발생했습니다. : " + callback);
+                return;
+            }
 
-        Debug.Log("랭킹 삽입에 성공했습니다. : " + rankBro);
+            Debug.Log("랭킹 삽입에 성공했습니다. : " + callback);
+        });
     }
 
     public void RankGet()

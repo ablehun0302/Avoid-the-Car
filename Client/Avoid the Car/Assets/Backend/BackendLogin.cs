@@ -83,7 +83,7 @@ public class BackendLogin
         return bro.StatusCode;
     }
 
-    public void UpdateNickname(string nickname)
+    public int UpdateNickname(string nickname)
     {
         Debug.Log("닉네임 변경을 요청합니다.");
 
@@ -97,5 +97,7 @@ public class BackendLogin
         {
             Debug.LogError("닉네임 변경에 실패했습니다 : " + bro);
         }
+
+        return bro.StatusCode;
     }
 }
