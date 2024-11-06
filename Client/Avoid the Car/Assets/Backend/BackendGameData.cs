@@ -137,7 +137,11 @@ public class BackendGameData
     public void UserDataSet(int score, int money, string something)
     {
         Debug.Log("점수 설정");
-        if (userData.maxScore < score) { userData.maxScore = score; }
+        if (userData.maxScore < score)
+        { 
+            userData.maxScore = score;
+            BackendRank.Instance.RankInsert(score);
+        }
         userData.money += money;
         userData.deadBy[something] ++;
     }
