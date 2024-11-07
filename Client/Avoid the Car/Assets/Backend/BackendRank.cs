@@ -23,7 +23,7 @@ public class BackendRank
 
     public void RankInsert(int score)
     {
-        string rankUUID = "0193006c-ac2b-7c0d-971d-20c98a678090"; //리더보드 UUID값
+        string rankUUID = "0193069c-f85c-732c-bdb5-4934d89d9245"; //리더보드 UUID값
 
         string tableName = "USER_DATA";
         string rowInDate = string.Empty;
@@ -80,9 +80,31 @@ public class BackendRank
         });
     }
 
+    public string FirstRankGet()
+    {
+        string rankUUID = "0193069c-f85c-732c-bdb5-4934d89d9245"; //리더보드 UUID값
+        var bro = Backend.URank.User.GetRankList(rankUUID);
+
+        if (bro.IsSuccess() == false)
+        {
+            Debug.LogError("랭킹 조회중 오류가 발생했습니다. : " + bro);
+            return null;
+        }
+
+        Debug.Log("랭킹 조회에 성공했습니다. : " + bro);
+
+        Debug.Log("총 랭킹 등록 유저 수 : " + bro.GetFlattenJSON()["totalCount"].ToString());
+
+        var jsonData = bro.FlattenRows()[0];
+        string nickname = jsonData["nickname"].ToString();
+        string score = jsonData["score"].ToString();
+
+        return nickname +"의 최고기록\n" + score +"점을 넘겨보자!";
+    }
+
     public void RankGet()
     {
-        string rankUUID = "0193006c-ac2b-7c0d-971d-20c98a678090"; //리더보드 UUID값
+        string rankUUID = "0193069c-f85c-732c-bdb5-4934d89d9245"; //리더보드 UUID값
         var bro = Backend.URank.User.GetRankList(rankUUID);
 
         if (bro.IsSuccess() == false)

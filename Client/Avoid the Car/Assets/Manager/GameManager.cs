@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 /// <summary>
 /// 게임의 흐름을 제어하는 메서드 모음
@@ -10,6 +11,8 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     public bool IsGameOver { get; private set; } = false;
+    
+    Vector3 textScale = new(1, 1, 1);
 
     PlayerMovement player;
     ScoreManager scoreManager;
@@ -23,6 +26,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject titleCanvas;
     [SerializeField] GameObject inGameCanvas;
     [SerializeField] GameObject gameOverCanvas;
+    [SerializeField] GameObject[] startTexts;
+    [SerializeField] GameObject firstRankText;
 
     public static GameManager Instance { get; private set; }
 
@@ -75,9 +80,36 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 게임 시작/재시작 시 실행되는 메서드
+    /// 게임 시작 메서드
     /// </summary>
     public void GameStart()
+    {
+        titleCanvas.SetActive(false);
+        inGameCanvas.SetActive(true);   //인게임 캔버스 켜기
+        gameOverCanvas.SetActive(false);
+
+        Sequence countSequence = DOTween.Sequence();
+        for (int i = 0; i < startTexts.Length; i++)
+        {
+            int index = i; // Capture the current value of i
+            countSequence.Append(startTexts[index].transform.DOScale(textScale, 1).SetEase(Ease.OutBack).OnComplete(() =>
+            {
+                startTexts[index].transform.localScale = Vector3.zero;
+                if (index == startTexts.Length - 1)
+                {
+                    GameSet();
+                }
+            }));
+        }
+        countSequence.Insert(0f, firstRankText.transform.DOScale(textScale, 1).SetEase(Ease.OutSine));
+        countSequence.Append(startTexts[startTexts.Length - 1].transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutSine));
+        countSequence.Join(firstRankText.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutSine));
+    }
+
+    /// <summary>
+    /// 게임 시작 시 세팅 메서드
+    /// </summary>
+    void GameSet()
     {
         //플레이어 움직임 활성화
         player.enabled = true;
@@ -86,10 +118,6 @@ public class GameManager : MonoBehaviour
         followCamera.enabled = true;
 
         obstacleSpawner.SetActive(true);
-
-        titleCanvas.SetActive(false);
-        inGameCanvas.SetActive(true);   //인게임 캔버스 켜기
-        gameOverCanvas.SetActive(false);
 
         //스코어 더하기 실행
         scoreManager.EventCoroutine();
