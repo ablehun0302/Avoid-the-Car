@@ -77,9 +77,7 @@ public class BackendManager : MonoBehaviour
         {
             BackendGameData.Instance.GameDataInsert();
 
-            int random = UnityEngine.Random.Range(10000, 99999);
-            string nickname = "익명"+ random;
-            BackendLogin.Instance.UpdateNickname(nickname);
+            BackendLogin.Instance.CreateNickname();
         }
 
         BackendRank.Instance.RankInsert(BackendGameData.userData.maxScore);

@@ -18,6 +18,17 @@ public class NicknameField : MonoBehaviour
             string nickname = callback.GetReturnValuetoJSON()["row"]["nickname"].ToString();
             nicknameInput.text = nickname;
         });
+
+        if (nicknameInput.text == "" || nicknameInput.text == null)
+        {
+            BackendLogin.Instance.CreateNickname();
+            Backend.BMember.GetUserInfo(callback =>
+            {
+                string nickname = callback.GetReturnValuetoJSON()["row"]["nickname"].ToString();
+                nicknameInput.text = nickname;
+            });
+        }
+
     }
 
     void OnEnable()

@@ -100,4 +100,11 @@ public class BackendLogin
 
         return bro.StatusCode;
     }
+
+    public void CreateNickname()
+    {
+        int random = Random.Range(10000, 99999);
+        string nickname = "익명"+ random;
+        UpdateNickname(nickname);
+    }
 }
