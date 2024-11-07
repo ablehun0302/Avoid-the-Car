@@ -21,6 +21,11 @@ public class BackendGameLog
         }
     }
 
+    //로그 작성용 필드
+    public int DashCount { get; set; } = 0;
+    public int DashSuccessNumber { get; set; } = 0;
+    
+
     /// <summary>
     /// 들어온/ 나간 시간을 로그에 입력하는 메서드
     /// </summary>
@@ -54,13 +59,12 @@ public class BackendGameLog
     /// <param name="something">부딛힌 장애물</param>
     public void DeadLogInsert(int score, int time, string something)
     {
-        int scoreRange = (score / 1000) * 1000;
-        int timeRange = (time / 10) * 10;
-
         Param param = new Param();
 
-        param.Add("scoreRange", scoreRange);
-        param.Add("timeRange", timeRange);
+        param.Add("score", score);
+        param.Add("time", time);
+        param.Add("dashCount", DashCount);
+        param.Add("dashSuccessNumber", DashSuccessNumber);
         param.Add("deadBy", something);
 
         Debug.Log("게임 로그 삽입을 시도합니다.");

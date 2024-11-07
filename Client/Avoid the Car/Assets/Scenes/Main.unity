@@ -746,7 +746,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -90.1}
-  m_SizeDelta: {x: 293.8, y: 75.5}
+  m_SizeDelta: {x: 557.07, y: 75.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &31868175
 MonoBehaviour:
@@ -768,7 +768,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00:00.00
+  m_text: "\uC2DC\uAC04 00:00.00"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98caa25839fac2942983a06698b0101f, type: 2}
   m_sharedMaterial: {fileID: 8610275499380727057, guid: 98caa25839fac2942983a06698b0101f, type: 2}
@@ -857,7 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0600bb96b552b024db8ef6c5c0e231a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourceText: "\uC2DC\uAC04 - "
+  sourceText: "\uC2DC\uAC04 "
 --- !u!1 &32743898
 GameObject:
   m_ObjectHideFlags: 0

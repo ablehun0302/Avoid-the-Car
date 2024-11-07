@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
             playerRigidbody.AddForce(playerDirection * dashSpeed, ForceMode2D.Impulse);
             playerCollider.enabled = false;
             hasDash = false;
+            BackendGameLog.Instance.DashCount ++;
         }
     }
 

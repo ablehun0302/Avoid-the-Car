@@ -64,6 +64,9 @@ public class GameManager : MonoBehaviour
         scoreManager.SecDividedByTen = 0;
         scoreManager.SpeedFactor = 1f;
 
+        BackendGameLog.Instance.DashCount = 0;
+        BackendGameLog.Instance.DashSuccessNumber = 0;
+
         IsGameOver = false;
 
         bgmusic.Stop();

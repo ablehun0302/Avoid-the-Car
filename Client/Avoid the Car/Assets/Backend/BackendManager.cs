@@ -78,6 +78,8 @@ public class BackendManager : MonoBehaviour
             BackendGameData.Instance.GameDataInsert();
         }
 
+        BackendRank.Instance.RankInsert(BackendGameData.userData.maxScore);
+
         SceneManager.LoadScene(1);
     }
 
