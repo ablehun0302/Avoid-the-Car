@@ -21715,6 +21715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcbe773a6ea5d2f48a637cf2b323b94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  warningText: {fileID: 218316809}
 --- !u!1 &1333271083
 GameObject:
   m_ObjectHideFlags: 0
@@ -36263,7 +36264,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2131460676}
-  - component: {fileID: 2131460680}
   - component: {fileID: 2131460679}
   - component: {fileID: 2131460678}
   - component: {fileID: 2131460677}
@@ -36338,8 +36338,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2131460680}
-        m_TargetAssemblyTypeName: NicknameButton, Assembly-CSharp
+      - m_Target: {fileID: 1327419710}
+        m_TargetAssemblyTypeName: NicknameField, Assembly-CSharp
         m_MethodName: UpdateNicknameButton
         m_Mode: 1
         m_Arguments:
@@ -36388,20 +36388,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2131460675}
   m_CullTransparentMesh: 1
---- !u!114 &2131460680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2131460675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de5d0036b66f31346bdf7bfbba4bb68b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nicknameField: {fileID: 1327419705}
-  warningText: {fileID: 218316809}
 --- !u!1 &2137425461
 GameObject:
   m_ObjectHideFlags: 0

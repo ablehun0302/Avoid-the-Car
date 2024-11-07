@@ -1,12 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using BackEnd;
+using TMPro;
 
-public class NicknameButton : MonoBehaviour
+public class NicknameField : MonoBehaviour
 {
-    [SerializeField] GameObject nicknameField;
+    TMP_InputField nicknameInput;
     [SerializeField] TextMeshProUGUI warningText;
+
+    void Start()
+    {
+        nicknameInput = GetComponent<TMP_InputField>();
+
+        Backend.BMember.GetUserInfo(callback =>
+        {
+            string nickname = callback.GetReturnValuetoJSON()["row"]["nickname"].ToString();
+            nicknameInput.text = nickname;
+        });
+    }
 
     void OnEnable()
     {
@@ -15,7 +27,6 @@ public class NicknameButton : MonoBehaviour
 
     public void UpdateNicknameButton()
     {
-        TMP_InputField nicknameInput = nicknameField.GetComponent<TMP_InputField>();
         int status = BackendLogin.Instance.UpdateNickname(nicknameInput.text);
 
         switch (status)
