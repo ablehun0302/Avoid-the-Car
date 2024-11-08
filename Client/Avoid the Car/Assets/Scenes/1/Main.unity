@@ -6347,6 +6347,8 @@ MonoBehaviour:
   spawnRate: 1
   specialPrefabs:
   - {fileID: 7615275687277379018, guid: 85d7e16c06792294b9a655e052baefa9, type: 3}
+  - {fileID: 1188196407959064763, guid: 333acb355454c5244b99c63280e6df65, type: 3}
+  - {fileID: 6884402298200256613, guid: f1e9c764790ff574d825b22790feb9e2, type: 3}
   specialRate: 10
   obstaclePool: {fileID: 277040803}
 --- !u!4 &427548186
@@ -9040,7 +9042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -216.00006, y: 155.74}
+  m_AnchoredPosition: {x: -163.7, y: 155.74}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &579912099

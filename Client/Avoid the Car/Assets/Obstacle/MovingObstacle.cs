@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 장애물의 움직임을 구현
 /// </summary>
-public class ObstacleMovement : MonoBehaviour
+public class MovingObstacle : MonoBehaviour
 {
     [SerializeField] float speed = 10;
     [SerializeField] string obstacleName;
@@ -13,13 +13,18 @@ public class ObstacleMovement : MonoBehaviour
     Rigidbody2D rigidBody;
     Transform front;
     ScoreManager scoreManager;
+    ObstaclePositioner obstaclePositioner;
 
-    void OnEnable()
+    void Start()
     {
         gameObject.name = obstacleName;
         rigidBody = GetComponent<Rigidbody2D>();
         front = transform.GetChild(0);
         scoreManager = ScoreManager.Instance;
+        obstaclePositioner = ObstaclePositioner.Instance;
+
+        obstaclePositioner.SetOutsidePosition(gameObject);
+        obstaclePositioner.LookAtPlayer(gameObject);
     }
 
     void FixedUpdate()
