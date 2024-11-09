@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class StaticObstacle : MonoBehaviour
+public class StaticObstacle : ObstaclePositioner
 {
     [SerializeField] string obstacleName;
     [SerializeField] Vector3 defaultScale;
@@ -12,7 +12,6 @@ public class StaticObstacle : MonoBehaviour
     CircleCollider2D thisCollider;
     SpriteRenderer tireSprite;
     SpriteRenderer shadowSprite;
-    ObstaclePositioner obstaclePositioner;
 
     void Start()
     {
@@ -22,9 +21,8 @@ public class StaticObstacle : MonoBehaviour
         thisCollider = GetComponent<CircleCollider2D>();
         tireSprite = GetComponent<SpriteRenderer>();
         shadowSprite = shadow.GetComponent<SpriteRenderer>();
-        obstaclePositioner = ObstaclePositioner.Instance;
 
-        obstaclePositioner.SetInsidePosition(gameObject);
+        SetInsidePosition();
 
         Sequence dropSequence = DOTween.Sequence();
         dropSequence.Append(shadowSprite.DOFade(0.7f, 1f).SetEase(Ease.OutSine));

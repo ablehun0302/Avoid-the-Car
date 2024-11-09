@@ -14,15 +14,16 @@ public class ObstacleSpawner : MonoBehaviour
     
     [Header("특수 장애물")]
     [SerializeField] GameObject[] specialPrefabs;
+    [SerializeField] int[] specialCounts;
     [SerializeField] float specialRate = 10;
     public float CurrentSpecialRate { get; set; }
 
-    PlayerMovement player;
+    //PlayerMovement player;
     [SerializeField] Transform obstaclePool;
 
     void OnEnable()
     {
-        player = PlayerMovement.Instance;
+        //player = PlayerMovement.Instance;
         
         //기본값 초기화
         CurrentSpawnRate = spawnRate;
@@ -59,7 +60,11 @@ public class ObstacleSpawner : MonoBehaviour
         {
             //장애물 종류 정하기
             int index = Random.Range(0, specialPrefabs.Length);
-            Instantiate(specialPrefabs[index], obstaclePool);
+            int count = specialCounts[index];
+            for (int i = 0; i < count; i++)
+            {
+                Instantiate(specialPrefabs[index], obstaclePool);
+            }
 
             yield return new WaitForSeconds(CurrentSpecialRate);
         }

@@ -22,14 +22,14 @@ public class PlayerCollision : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
-    /*void OnCheat(InputValue value)
+    void OnCheat(InputValue value)
     {
         if(value.isPressed)
         {
             cheat = !cheat;
         }
         Debug.Log(cheat);
-    }*/
+    }
 
     void OnCollisionEnter2D(Collision2D other)
     {

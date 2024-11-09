@@ -6348,7 +6348,9 @@ MonoBehaviour:
   specialPrefabs:
   - {fileID: 7615275687277379018, guid: 85d7e16c06792294b9a655e052baefa9, type: 3}
   - {fileID: 1188196407959064763, guid: 333acb355454c5244b99c63280e6df65, type: 3}
+  - {fileID: 5997191759192191343, guid: 4ea93ac40be46d14bb3c105509347d83, type: 3}
   - {fileID: 6884402298200256613, guid: f1e9c764790ff574d825b22790feb9e2, type: 3}
+  specialCounts: 01000000010000000100000003000000
   specialRate: 10
   obstaclePool: {fileID: 277040803}
 --- !u!4 &427548186
