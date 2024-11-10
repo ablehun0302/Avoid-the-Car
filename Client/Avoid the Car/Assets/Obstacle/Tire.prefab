@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: -1900855291
   m_SortingLayer: 4
   m_SortingOrder: -1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fde4aea620a115c4aae372af1f530e4c, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -161,8 +161,8 @@ SpriteRenderer:
   m_SortingLayerID: -1900855291
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 0}
+  m_Sprite: {fileID: 21300000, guid: fde4aea620a115c4aae372af1f530e4c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleName: "\uD0C0\uC774\uC5B4"
-  defaultScale: {x: 2.5, y: 2.5, z: 2.5}
+  defaultScale: {x: 3, y: 3, z: 3}
 --- !u!58 &-6828763145301919132
 CircleCollider2D:
   m_ObjectHideFlags: 0

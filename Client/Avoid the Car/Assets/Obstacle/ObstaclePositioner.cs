@@ -6,8 +6,8 @@ public class ObstaclePositioner : MonoBehaviour
 {
     PlayerMovement player = PlayerMovement.Instance;
     
-    int outsideRadius = 30;
-    float insideRadius = 10;
+    int outsideRadius = 40;
+    float insideRadius = 15;
 
     /// <summary>
     /// 맵 바깥쪽에 장애물을 랜덤으로 배치하는 메서드

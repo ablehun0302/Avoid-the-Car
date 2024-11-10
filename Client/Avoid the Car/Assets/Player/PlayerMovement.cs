@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     float timer = 0f;
     float dashInvulnerableTime = 0.5f;
     float dashCooldownTime = 5;
+    Color waitingColor = new Color(1, 1, 1, 0.5f);
 
     public static PlayerMovement Instance { get; private set; }
     Rigidbody2D playerRigidbody;
@@ -65,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
             Vector2 playerDirection = (playerFront.position - transform.position).normalized;
             playerRigidbody.AddForce(playerDirection * dashSpeed, ForceMode2D.Impulse);
             playerCollider.enabled = false;
+            cooldownImage.color = waitingColor;
             hasDash = false;
             BackendGameLog.Instance.DashCount ++;
         }
@@ -95,7 +97,6 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigidbody.AddForce(moveInput * speed);
 
-        //플레이어 x값을 -11 ~ 11, y > -7 로 지정
         Vector3 clampedPosition = transform.position;
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, -xRange, xRange);
         clampedPosition.y = Mathf.Clamp(clampedPosition.y, -yRange, yRange);
@@ -108,5 +109,6 @@ public class PlayerMovement : MonoBehaviour
         hasDash = true;
         timer = 0f;
         cooldownImage.fillAmount = 1;
+        cooldownImage.color = Color.white;
     }
 }
