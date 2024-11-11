@@ -94,10 +94,13 @@ public class GameManager : MonoBehaviour
             int index = i; // Capture the current value of i
             countSequence.Append(startTexts[index].transform.DOScale(textScale, 1).SetEase(Ease.OutBack).OnComplete(() =>
             {
-                startTexts[index].transform.localScale = Vector3.zero;
                 if (index == startTexts.Length - 1)
                 {
                     GameSet();
+                }
+                else
+                {
+                    startTexts[index].transform.localScale = Vector3.zero;
                 }
             }));
         }

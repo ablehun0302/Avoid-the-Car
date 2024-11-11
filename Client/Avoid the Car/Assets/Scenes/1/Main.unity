@@ -6346,11 +6346,11 @@ MonoBehaviour:
   - {fileID: 7056055278891506347, guid: 6db7b6c71897ec14488d6cb1b5fd26e2, type: 3}
   spawnRate: 1
   specialPrefabs:
-  - {fileID: 7615275687277379018, guid: 85d7e16c06792294b9a655e052baefa9, type: 3}
+  - {fileID: 943746642805578680, guid: 1c6b27d63f0906342a7b4d461c6a64ea, type: 3}
   - {fileID: 1188196407959064763, guid: 333acb355454c5244b99c63280e6df65, type: 3}
   - {fileID: 5997191759192191343, guid: 4ea93ac40be46d14bb3c105509347d83, type: 3}
   - {fileID: 6884402298200256613, guid: f1e9c764790ff574d825b22790feb9e2, type: 3}
-  specialCounts: 01000000010000000100000003000000
+  specialCounts: 03000000010000000100000003000000
   specialRate: 10
   obstaclePool: {fileID: 277040803}
 --- !u!4 &427548186
@@ -28609,10 +28609,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 60, y: 60}
-      - {x: 60, y: -60}
-      - {x: -60, y: -60}
-      - {x: -60, y: 60}
+    - - {x: 30, y: 30}
+      - {x: 30, y: -30}
+      - {x: -30, y: -30}
+      - {x: -30, y: 30}
   m_UseDelaunayMesh: 0
 --- !u!1 &1736035336
 GameObject:
@@ -37415,6 +37415,14 @@ PrefabInstance:
     - target: {fileID: 1269655721207167061, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3125650039674875708, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
+      propertyPath: xRange
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 3125650039674875708, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
+      propertyPath: yRange
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 3125650039674875708, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: cooldownImage
