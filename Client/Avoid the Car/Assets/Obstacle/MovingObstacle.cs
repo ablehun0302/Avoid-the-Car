@@ -8,6 +8,7 @@ using UnityEngine;
 public class MovingObstacle : ObstaclePositioner
 {
     [SerializeField] float speed = 10;
+    [SerializeField] int bonusScore;
     [SerializeField] string obstacleName;
 
     Rigidbody2D rigidBody;
@@ -35,7 +36,7 @@ public class MovingObstacle : ObstaclePositioner
         if (other.CompareTag("Area")) { Destroy(gameObject); }
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(scoreManager.IncreaseBonusScore());
+            StartCoroutine(scoreManager.IncreaseBonusScore(bonusScore));
         }
     }
 

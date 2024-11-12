@@ -28,6 +28,7 @@ public class ScoreManager : MonoBehaviour
     PlayerMovement player;
     GameManager gameManager;
     AudioSource bgmusic;
+    AudioSource bonusScoreSound;
     [SerializeField] ObstacleSpawner obstacleSpawner;
     [SerializeField] GameObject fireworkVFX;
 
@@ -40,7 +41,8 @@ public class ScoreManager : MonoBehaviour
     {
         player = PlayerMovement.Instance;
         gameManager = GameManager.Instance;
-        bgmusic = player.GetComponent<AudioSource>();
+        bgmusic = gameManager.bgmusic;
+        bonusScoreSound = player.GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -92,13 +94,18 @@ public class ScoreManager : MonoBehaviour
         StartCoroutine(TimeBasedEvents());
     }
 
-    public IEnumerator IncreaseBonusScore()
+    public IEnumerator IncreaseBonusScore(int bonusScore)
     {
         yield return null;
         if (!gameManager.IsGameOver)
         {
-            Score += 1000;
+            Score += bonusScore;
+            if (bonusScore >= 1000)
+            {
+                for (int i = 0; i < 2; i ++) {Instantiate(fireworkVFX, player.transform.position, fireworkVFX.transform.rotation);}
+            }
             Instantiate(fireworkVFX, player.transform.position, fireworkVFX.transform.rotation);
+            bonusScoreSound.Play();
             BackendGameLog.Instance.DashSuccessNumber ++;
         }
     }

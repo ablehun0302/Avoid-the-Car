@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     PlayerCollision playerCollision;
     Rigidbody2D playerRigidbody;
     PlayerInput playerInput;
-    AudioSource bgmusic;
+    public AudioSource bgmusic;
     [SerializeField] CinemachineVirtualCamera followCamera;
     [SerializeField] GameObject obstacleSpawner;
     [SerializeField] Transform obstaclePool;
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         playerCollision = player.GetComponent<PlayerCollision>();
         playerRigidbody = player.GetComponent<Rigidbody2D>();
         playerInput = player.GetComponent<PlayerInput>();
-        bgmusic = player.GetComponent<AudioSource>();
+        bgmusic = GetComponent<AudioSource>();
     }
 
     void Update()

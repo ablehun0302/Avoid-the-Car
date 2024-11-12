@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6424470445724098634}
   - component: {fileID: 7219320704907622659}
   - component: {fileID: 16397174288616804}
+  - component: {fileID: 4176037921223040967}
   - component: {fileID: 1061975625256195474}
   m_Layer: 0
   m_Name: Player
@@ -108,9 +109,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   dashSpeed: 40
-  xRange: 59
-  yRange: 59
+  xRange: 29
+  yRange: 29
   playerFront: {fileID: 3116964370967874971}
+  cooldownImage: {fileID: 0}
 --- !u!114 &5816348199840868103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +127,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionVFX: {fileID: 2433282508537954060, guid: 20f200ea53655464abccea2e51733286, type: 3}
   hitVFX: {fileID: 141433446842962269, guid: a210185402b78af48a4a89e878f64827, type: 3}
-  fireworkVFX: {fileID: 1978689737715041617, guid: 2382badbd5fb9e845a6bbbdac6460b07, type: 3}
 --- !u!58 &3464592950503756196
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -228,11 +229,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c35075486dcf08c4bbf2c8278a763f7b, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_audioClip: {fileID: 8300000, guid: 1bb47b0f2ffd3464399b54cdc139ad54, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -314,6 +315,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &4176037921223040967
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269655721207167061}
+  m_Enabled: 0
 --- !u!95 &1061975625256195474
 Animator:
   serializedVersion: 5
@@ -499,4 +508,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 90
+  m_Radius: 85

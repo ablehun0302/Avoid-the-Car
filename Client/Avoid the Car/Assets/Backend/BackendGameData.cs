@@ -62,7 +62,11 @@ public class BackendGameData
         userData.deadBy.Add("하얀차", 0);
         userData.deadBy.Add("파란차", 0);
         userData.deadBy.Add("구급차", 0);
+        userData.deadBy.Add("트럭", 0);
+        userData.deadBy.Add("경찰차", 0);
+        userData.deadBy.Add("오토바이", 0);
         userData.deadBy.Add("사람", 0);
+        userData.deadBy.Add("타이어", 0);
 
         Debug.Log("뒤끝 업데이트 목록에 해당 데이터들을 추가합니다.");
         Param param = new Param();
@@ -143,12 +147,13 @@ public class BackendGameData
             BackendRank.Instance.RankInsert(score);
         }
         userData.money += money;
-        userData.deadBy[something] ++;
-    }
 
-    public int UserMaxScoreGet()
-    {
-        return userData.maxScore;
+        if (!userData.deadBy.ContainsKey(something))
+        {
+            userData.deadBy.Add(something, 0);
+        }
+        
+        userData.deadBy[something]++;
     }
 
     public void GameDataUpdate()
