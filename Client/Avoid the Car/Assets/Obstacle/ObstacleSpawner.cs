@@ -9,7 +9,9 @@ public class ObstacleSpawner : MonoBehaviour
 {
     [Header("기본 장애물")]
     [SerializeField] GameObject[] obstaclePrefabs;
+    [SerializeField] int[] spawnFrequency;
     [SerializeField] float spawnRate = 1;
+    int spawnFrequencyLength;
     public float CurrentSpawnRate { get; set; }
     
     [Header("특수 장애물")]
@@ -20,6 +22,14 @@ public class ObstacleSpawner : MonoBehaviour
 
     //PlayerMovement player;
     [SerializeField] Transform obstaclePool;
+
+    void Awake()
+    {
+        foreach (int frequency in spawnFrequency)
+        {
+            spawnFrequencyLength += frequency;
+        }
+    }
 
     void OnEnable()
     {
@@ -43,9 +53,20 @@ public class ObstacleSpawner : MonoBehaviour
         while (true)
         {
             //장애물 종류 정하기
-            int index = Random.Range(0, obstaclePrefabs.Length);
-            Instantiate(obstaclePrefabs[index], obstaclePool);
+            int randomValue = Random.Range(0, spawnFrequencyLength);
+            int frequencyMinValue = 0;
+            for (int index = 0; index < obstaclePrefabs.Length; index ++)
+            {
+                if ( randomValue >= frequencyMinValue && randomValue < spawnFrequency[index] + frequencyMinValue )
+                {
+                    Instantiate(obstaclePrefabs[index], obstaclePool);
+                    break;
+                }
 
+                frequencyMinValue += spawnFrequency[index];
+            }
+
+            CurrentSpawnRate = Mathf.Clamp(CurrentSpawnRate, 0.5f, 1f);
             yield return new WaitForSeconds(CurrentSpawnRate);
         }
     }

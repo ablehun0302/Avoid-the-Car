@@ -20,7 +20,7 @@ public class ScoreManager : MonoBehaviour
     int scoreIncreasement = 10;
     float pitchIncreasement = 0.05f;
 
-    float speedIncreasement = 0.11f;
+    float speedIncreasement = 0.1f;
     float spawnRateReduction = 0.1f;
     float specialRateReduction = 0.2f;
 
@@ -69,8 +69,8 @@ public class ScoreManager : MonoBehaviour
                 bgmusic.pitch += pitchIncreasement;
 
                 SpeedFactor += speedIncreasement;
-                obstacleSpawner.CurrentSpawnRate -= spawnRateReduction;
-                if (ElapsedSec != 20) { obstacleSpawner.CurrentSpecialRate -= specialRateReduction; }
+                if (obstacleSpawner.CurrentSpawnRate > 0.5) { obstacleSpawner.CurrentSpawnRate -= spawnRateReduction; }
+                if (ElapsedSec != eventInterval) { obstacleSpawner.CurrentSpecialRate -= specialRateReduction; }
 
                 /*Debug.Log("-------------\nSpeedFactor: " + SpeedFactor
                          +"\nSpawnRate: " + obstacleSpawner.CurrentSpawnRate

@@ -10,7 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1194769512375602591, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
       propertyPath: m_Mass
-      value: 80
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -1194769512375602591, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
+      propertyPath: m_LinearDrag
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1194769512375602591, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
+      propertyPath: m_AngularDrag
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 540247891908674648, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
       propertyPath: m_Size.y
@@ -22,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 6200000, guid: edb29556bbeaf2542b592df22e4ea814, type: 2}
     - target: {fileID: 1464722427967307756, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
       propertyPath: speed
-      value: 1000
+      value: 3500
       objectReference: {fileID: 0}
     - target: {fileID: 1464722427967307756, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
       propertyPath: obstacleName

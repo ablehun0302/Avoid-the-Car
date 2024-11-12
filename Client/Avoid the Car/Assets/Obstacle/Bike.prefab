@@ -28,9 +28,13 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 1.2373052
       objectReference: {fileID: 0}
+    - target: {fileID: 540247891908674648, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 7f50ce3d302538e4b9532e073cab78dd, type: 2}
     - target: {fileID: 1464722427967307756, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
       propertyPath: speed
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1464722427967307756, guid: d4ba4f9c41fd34c40b49f5f938d2cb87, type: 3}
       propertyPath: obstacleName
