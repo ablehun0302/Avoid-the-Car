@@ -16,7 +16,8 @@ public class ScoreManager : MonoBehaviour
     public float SpeedFactor { get; set; } = 1f;
 
     //난이도, 점수 조절값
-    int eventInterval = 20;
+    int spawnEventInterval = 10;
+    int speedEventInterval = 20;
     int scoreIncreasement = 10;
     float pitchIncreasement = 0.05f;
 
@@ -65,25 +66,25 @@ public class ScoreManager : MonoBehaviour
             
             if (SecDividedByTen != 0) { continue; }
 
-            //Debug.Log("ElapsedSec : " + ElapsedSec);
-            //20초마다 실행되는
-            if (ElapsedSec % eventInterval == 0)
+            //10초마다 실행되는 (스폰 주기 설정)
+            if (ElapsedSec % spawnEventInterval == 0)
+            {
+                if (obstacleSpawner.CurrentSpawnRate > 0.5) { obstacleSpawner.CurrentSpawnRate -= spawnRateReduction; }
+                if (ElapsedSec != spawnEventInterval) { obstacleSpawner.CurrentSpecialRate -= specialRateReduction; }
+            }
+
+            //20초마다 실행되는 (속도 주기 설정)
+            if (ElapsedSec % speedEventInterval == 0)
             {
                 bgmusic.pitch += pitchIncreasement;
 
                 SpeedFactor += speedIncreasement;
-                if (obstacleSpawner.CurrentSpawnRate > 0.5) { obstacleSpawner.CurrentSpawnRate -= spawnRateReduction; }
-                if (ElapsedSec != eventInterval) { obstacleSpawner.CurrentSpecialRate -= specialRateReduction; }
-
-                /*Debug.Log("-------------\nSpeedFactor: " + SpeedFactor
-                         +"\nSpawnRate: " + obstacleSpawner.CurrentSpawnRate
-                         +"\nSpecialRate: " + obstacleSpawner.CurrentSpecialRate);*/
             }
 
             //특정 초마다 추가되는
             switch (ElapsedSec)
             {
-                case 20:
+                case 10:
                     obstacleSpawner.SpawnSpecial();
                     break;
             }

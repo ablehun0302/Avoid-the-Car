@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     bool hasDash = true;
     float timer = 0f;
     float dashInvulnerableTime = 0.5f;
-    float dashCooldownTime = 5;
+    float dashCooldownTime = 3;
     Color waitingColor = new Color(1, 1, 1, 0.5f);
 
     public static PlayerMovement Instance { get; private set; }
