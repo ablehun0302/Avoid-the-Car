@@ -23,7 +23,7 @@ public class NicknameField : MonoBehaviour
 
     void InitializeNickname()
     {
-        if (nicknameInput.text == "" || nicknameInput.text == null)
+        if (string.IsNullOrEmpty(nicknameInput.text))
         {
             BackendLogin.Instance.CreateNickname();
             Backend.BMember.GetUserInfo(callback =>

@@ -31,6 +31,7 @@ public class ScoreManager : MonoBehaviour
     AudioSource bonusScoreSound;
     [SerializeField] ObstacleSpawner obstacleSpawner;
     [SerializeField] GameObject fireworkVFX;
+    [SerializeField] GameObject bonusScoreText;
 
     void Awake()
     {
@@ -105,6 +106,9 @@ public class ScoreManager : MonoBehaviour
                 for (int i = 0; i < 2; i ++) {Instantiate(fireworkVFX, player.transform.position, fireworkVFX.transform.rotation);}
             }
             Instantiate(fireworkVFX, player.transform.position, fireworkVFX.transform.rotation);
+            GameObject bonusText = Instantiate(bonusScoreText, player.transform.position, bonusScoreText.transform.rotation);
+            bonusText.GetComponent<TextMeshPro>().text = "+ " + bonusScore +"점";
+
             bonusScoreSound.Play();
             BackendGameLog.Instance.DashSuccessNumber ++;
         }
