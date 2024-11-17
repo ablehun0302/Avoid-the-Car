@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BackEnd;
 using System.Text;
+using System.Linq;
 
 public class BackendRank
 {
@@ -80,7 +81,7 @@ public class BackendRank
         });
     }
 
-    public string FirstRankGet()
+    public List<string> FirstRankGet()
     {
         string rankUUID = "0193069c-f85c-732c-bdb5-4934d89d9245"; //리더보드 UUID값
         var bro = Backend.URank.User.GetRankList(rankUUID);
@@ -96,10 +97,13 @@ public class BackendRank
         Debug.Log("총 랭킹 등록 유저 수 : " + bro.GetFlattenJSON()["totalCount"].ToString());
 
         var jsonData = bro.FlattenRows()[0];
-        string nickname = jsonData["nickname"].ToString();
-        string score = jsonData["score"].ToString();
+        List<string> firstRankInfo = new List<string>
+        {
+            jsonData["nickname"].ToString(),
+            jsonData["score"].ToString()
+        };
 
-        return nickname +"의 최고기록\n" + score +"점을 넘겨보자!";
+        return firstRankInfo;
     }
 
     public void RankGet()
