@@ -6,6 +6,7 @@ using DG.Tweening;
 public class StaticObstacle : ObstaclePositioner
 {
     [SerializeField] string obstacleName;
+    [SerializeField] string sortingLayer;
     [SerializeField] Vector3 defaultScale;
 
     Transform shadow;
@@ -31,7 +32,7 @@ public class StaticObstacle : ObstaclePositioner
         {
             shadow.gameObject.SetActive(false);
             thisCollider.enabled = true;
-            tireSprite.sortingLayerName = "Obstacle";
+            tireSprite.sortingLayerName = sortingLayer;
         }));
         dropSequence.Join(tireSprite.DOFade(1f, 1f).SetEase(Ease.OutSine));
     }

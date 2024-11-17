@@ -128,6 +128,7 @@ MonoBehaviour:
   hitVFX: {fileID: 141433446842962269, guid: a210185402b78af48a4a89e878f64827, type: 3}
   noBounce: {fileID: 6200000, guid: 1230d7bbdc3683b40adebb05da134da7, type: 2}
   playerBounce: {fileID: 6200000, guid: 7788c5b79ad09774c85a57a5e7c4efb6, type: 2}
+  miscGroup: {fileID: 0}
   miscImage: {fileID: 0}
 --- !u!58 &3464592950503756196
 CircleCollider2D:
@@ -443,4 +444,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.45

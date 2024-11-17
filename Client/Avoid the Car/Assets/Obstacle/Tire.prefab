@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleName: "\uD0C0\uC774\uC5B4"
+  sortingLayer: Obstacle
   defaultScale: {x: 3, y: 3, z: 3}
 --- !u!58 &-6828763145301919132
 CircleCollider2D:

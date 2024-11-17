@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class PlayerCollision : MonoBehaviour
 {
     bool cheat = false;         //치트 변수 - 무적상태로 변함
+    int itemCoolTime = 10;
 
     Animator animator;          //플레이어 텍스쳐 변환용 애니메이터
     Rigidbody2D myRigidbody;
@@ -19,6 +20,7 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] GameObject hitVFX;         //부딪힘 파티클
     [SerializeField] PhysicsMaterial2D noBounce;
     [SerializeField] PhysicsMaterial2D playerBounce;
+    [SerializeField] GameObject miscGroup;
     [SerializeField] Image miscImage;
 
     void Start()
@@ -79,6 +81,7 @@ public class PlayerCollision : MonoBehaviour
         cheat = true;
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         myCollider.sharedMaterial = noBounce;
+        miscGroup.SetActive(true);
 
         StopCoroutine(InvulnerabilityRoutine());
         StartCoroutine(InvulnerabilityRoutine());
@@ -90,18 +93,18 @@ public class PlayerCollision : MonoBehaviour
     {
         float timer = 0f;
 
-        while (timer <= 5f)
+        while (timer <= itemCoolTime)
         {
             timer += Time.deltaTime;
 
-            miscImage.fillAmount = 1 - (timer / 5) ;
+            miscImage.fillAmount = 1 - (timer / itemCoolTime) ;
 
             yield return null;
         }
 
         myRigidbody.constraints = RigidbodyConstraints2D.None;
         myCollider.sharedMaterial = playerBounce;
-        miscImage.fillAmount = 0f;
+        miscGroup.SetActive(false);
         cheat = false;
     }
 }

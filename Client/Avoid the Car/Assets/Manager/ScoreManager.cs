@@ -18,6 +18,7 @@ public class ScoreManager : MonoBehaviour
     //난이도, 점수 조절값
     int spawnEventInterval = 10;
     int speedEventInterval = 20;
+    int miscSpawnInterval = 30;
     int scoreIncreasement = 10;
     float pitchIncreasement = 0.05f;
 
@@ -33,6 +34,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] ObstacleSpawner obstacleSpawner;
     [SerializeField] GameObject fireworkVFX;
     [SerializeField] GameObject bonusScoreText;
+    [SerializeField] GameObject item;
 
     void Awake()
     {
@@ -79,6 +81,11 @@ public class ScoreManager : MonoBehaviour
                 bgmusic.pitch += pitchIncreasement;
 
                 SpeedFactor += speedIncreasement;
+            }
+
+            if (ElapsedSec % miscSpawnInterval == 0)
+            {
+                Instantiate(item);
             }
 
             //특정 초마다 추가되는
