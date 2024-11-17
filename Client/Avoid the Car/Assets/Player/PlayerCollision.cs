@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 /// <summary>
 /// 플레이어 충돌과 이후 이벤트를 구현
@@ -10,14 +11,21 @@ public class PlayerCollision : MonoBehaviour
     bool cheat = false;         //치트 변수 - 무적상태로 변함
 
     Animator animator;          //플레이어 텍스쳐 변환용 애니메이터
+    Rigidbody2D myRigidbody;
+    Collider2D myCollider;
     ScoreManager scoreManager;
     GameManager gameManager;
     [SerializeField] GameObject explosionVFX;   //폭파 파티클
     [SerializeField] GameObject hitVFX;         //부딪힘 파티클
+    [SerializeField] PhysicsMaterial2D noBounce;
+    [SerializeField] PhysicsMaterial2D playerBounce;
+    [SerializeField] Image miscImage;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        myRigidbody = GetComponent<Rigidbody2D>();
+        myCollider = GetComponent<Collider2D>();
         scoreManager = ScoreManager.Instance;
         gameManager = GameManager.Instance;
     }
@@ -48,7 +56,7 @@ public class PlayerCollision : MonoBehaviour
                 
         switch (obstacleName)   //파티클 생성
         {
-            case "사람":
+            case "타이어":
                 Instantiate(hitVFX, collisionPos, hitVFX.transform.rotation);
                 break;
             default:
@@ -62,5 +70,38 @@ public class PlayerCollision : MonoBehaviour
 
         //유저 데이터 수정
         BackendGameData.Instance.UserDataSet(scoreManager.Score, 0, obstacleName);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.gameObject.CompareTag("Item") || gameManager.IsGameOver) return;
+
+        cheat = true;
+        myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        myCollider.sharedMaterial = noBounce;
+
+        StopCoroutine(InvulnerabilityRoutine());
+        StartCoroutine(InvulnerabilityRoutine());
+
+        Destroy(other.gameObject);
+    }
+
+    IEnumerator InvulnerabilityRoutine()
+    {
+        float timer = 0f;
+
+        while (timer <= 5f)
+        {
+            timer += Time.deltaTime;
+
+            miscImage.fillAmount = 1 - (timer / 5) ;
+
+            yield return null;
+        }
+
+        myRigidbody.constraints = RigidbodyConstraints2D.None;
+        myCollider.sharedMaterial = playerBounce;
+        miscImage.fillAmount = 0f;
+        cheat = false;
     }
 }
