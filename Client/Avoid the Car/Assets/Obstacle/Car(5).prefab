@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeed: 4
-  followTimes: 5
+  followTimes: 7
 --- !u!82 &4687669522144651982
 AudioSource:
   m_ObjectHideFlags: 0

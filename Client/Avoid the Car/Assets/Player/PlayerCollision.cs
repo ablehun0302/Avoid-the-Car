@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class PlayerCollision : MonoBehaviour
 {
     bool cheat = false;         //치트 변수 - 무적상태로 변함
-    int itemCoolTime = 10;
+    int itemCoolTime = 8;
 
     Animator animator;          //플레이어 텍스쳐 변환용 애니메이터
     Rigidbody2D myRigidbody;
@@ -18,7 +18,7 @@ public class PlayerCollision : MonoBehaviour
     GameManager gameManager;
     [SerializeField] GameObject explosionVFX;   //폭파 파티클
     [SerializeField] GameObject hitVFX;         //부딪힘 파티클
-    [SerializeField] GameObject itemVFX;
+    [SerializeField] ParticleSystem itemVFX;
     [SerializeField] PhysicsMaterial2D noBounce;
     [SerializeField] PhysicsMaterial2D playerBounce;
     [SerializeField] GameObject miscGroup;
@@ -33,14 +33,14 @@ public class PlayerCollision : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
-    void OnCheat(InputValue value)
+    /*void OnCheat(InputValue value)
     {
         if(value.isPressed)
         {
             cheat = !cheat;
         }
         Debug.Log(cheat);
-    }
+    }*/
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -83,7 +83,7 @@ public class PlayerCollision : MonoBehaviour
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         myCollider.sharedMaterial = noBounce;
         miscGroup.SetActive(true);
-        itemVFX.SetActive(true);
+        itemVFX.Play();
 
         StopCoroutine(InvulnerabilityRoutine());
         StartCoroutine(InvulnerabilityRoutine());
@@ -107,7 +107,7 @@ public class PlayerCollision : MonoBehaviour
         myRigidbody.constraints = RigidbodyConstraints2D.None;
         myCollider.sharedMaterial = playerBounce;
         miscGroup.SetActive(false);
-        itemVFX.SetActive(false);
+        itemVFX.Stop();
         cheat = false;
     }
 }

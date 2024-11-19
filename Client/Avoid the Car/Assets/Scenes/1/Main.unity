@@ -6458,7 +6458,7 @@ MonoBehaviour:
   - {fileID: 5997191759192191343, guid: 57c1f567aea85e14ea8ef5dedbc08682, type: 3}
   - {fileID: 7056055278891506347, guid: 6db7b6c71897ec14488d6cb1b5fd26e2, type: 3}
   - {fileID: 5997191759192191343, guid: 4ea93ac40be46d14bb3c105509347d83, type: 3}
-  spawnFrequency: 02000000020000000200000001000000
+  spawnFrequency: 05000000050000000500000002000000
   spawnRate: 1
   specialPrefabs:
   - {fileID: 943746642805578680, guid: 1c6b27d63f0906342a7b4d461c6a64ea, type: 3}
@@ -36339,9 +36339,9 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &2045358782 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4254101577420838111, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
+--- !u!198 &2045358784 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5937715129291407962, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
   m_PrefabInstance: {fileID: 6828890898339442272}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2051145555
@@ -38693,11 +38693,11 @@ PrefabInstance:
       objectReference: {fileID: 579912099}
     - target: {fileID: 3654718228931215683, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4254101577420838111, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4569962649619756530, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -38746,7 +38746,7 @@ PrefabInstance:
     - target: {fileID: 5816348199840868103, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: itemVFX
       value: 
-      objectReference: {fileID: 2045358782}
+      objectReference: {fileID: 2045358784}
     - target: {fileID: 5816348199840868103, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: miscGroup
       value: 
@@ -38757,11 +38757,15 @@ PrefabInstance:
       objectReference: {fileID: 1762309806}
     - target: {fileID: 5937715129291407962, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6415375170588663834, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875927144063163252, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
+      propertyPath: clearBehavior
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
