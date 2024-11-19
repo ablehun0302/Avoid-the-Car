@@ -14,6 +14,6 @@ public class GameOverTextAnim : MonoBehaviour
         Sequence mySequence = DOTween.Sequence();
         mySequence.AppendInterval(delayTime)
                   .AppendCallback(()=>{ transform.localScale = firstScale; })
-                  .Append(transform.DOScale(Vector3.one, 2f).SetEase(Ease.OutBounce));
+                  .Append(transform.DOScale(Vector3.one, 1.5f).SetEase(Ease.OutBounce));
     }
 }

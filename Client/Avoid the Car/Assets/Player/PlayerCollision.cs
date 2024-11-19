@@ -18,6 +18,7 @@ public class PlayerCollision : MonoBehaviour
     GameManager gameManager;
     [SerializeField] GameObject explosionVFX;   //폭파 파티클
     [SerializeField] GameObject hitVFX;         //부딪힘 파티클
+    [SerializeField] GameObject itemVFX;
     [SerializeField] PhysicsMaterial2D noBounce;
     [SerializeField] PhysicsMaterial2D playerBounce;
     [SerializeField] GameObject miscGroup;
@@ -82,6 +83,7 @@ public class PlayerCollision : MonoBehaviour
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         myCollider.sharedMaterial = noBounce;
         miscGroup.SetActive(true);
+        itemVFX.SetActive(true);
 
         StopCoroutine(InvulnerabilityRoutine());
         StartCoroutine(InvulnerabilityRoutine());
@@ -105,6 +107,7 @@ public class PlayerCollision : MonoBehaviour
         myRigidbody.constraints = RigidbodyConstraints2D.None;
         myCollider.sharedMaterial = playerBounce;
         miscGroup.SetActive(false);
+        itemVFX.SetActive(false);
         cheat = false;
     }
 }
