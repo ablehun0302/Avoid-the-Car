@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using TMPro;
 
 /// <summary>
 /// 게임의 흐름을 제어하는 메서드 모음
@@ -23,11 +24,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera followCamera;
     [SerializeField] GameObject obstacleSpawner;
     [SerializeField] Transform obstaclePool;
+    [Header("타이틀 캔버스 관련 필드")]
     [SerializeField] GameObject titleCanvas;
+    [Header("인게임 캔버스 관련 필드")]
     [SerializeField] GameObject inGameCanvas;
-    [SerializeField] GameObject gameOverCanvas;
     [SerializeField] GameObject[] startTexts;
     [SerializeField] GameObject firstRankText;
+    [Header("게임오버 캔버스 관련 필드")]
+    [SerializeField] GameObject gameOverCanvas;
+    [SerializeField] TextMeshProUGUI mainText;
+    [SerializeField] TextMeshProUGUI subText;
 
     public static GameManager Instance { get; private set; }
 
@@ -147,5 +153,22 @@ public class GameManager : MonoBehaviour
 
         inGameCanvas.SetActive(false);
         gameOverCanvas.SetActive(true);
+        
+        //랭킹 비교 후 텍스트 변경
+        if (BackendGameData.userData == null) return;
+        List<string> firstRankInfo = BackendRank.Instance.FirstRankGet();
+        string firstRankNickname = firstRankInfo[0];
+        int firstRankScore = int.Parse(firstRankInfo[1]);
+
+        if (scoreManager.Score > firstRankScore)
+        {
+            mainText.text = "Congratulations!";
+            subText.text = "1등은 이제 당신입니다!!";
+        }
+        else
+        {
+            mainText.text = "Game Over!";
+            subText.text = firstRankNickname + "보다는 한참 모자라시네요! ㅠㅜ";
+        }
     }
 }

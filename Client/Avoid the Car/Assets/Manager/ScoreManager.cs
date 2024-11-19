@@ -34,7 +34,6 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] ObstacleSpawner obstacleSpawner;
     [SerializeField] GameObject fireworkVFX;
     [SerializeField] GameObject bonusScoreText;
-    [SerializeField] GameObject item;
 
     void Awake()
     {
@@ -85,7 +84,7 @@ public class ScoreManager : MonoBehaviour
 
             if (ElapsedSec % miscSpawnInterval == 0)
             {
-                Instantiate(item);
+                obstacleSpawner.SpawnItem();
             }
 
             //특정 초마다 추가되는

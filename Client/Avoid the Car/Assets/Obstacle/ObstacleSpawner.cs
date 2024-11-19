@@ -22,6 +22,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     //PlayerMovement player;
     [SerializeField] Transform obstaclePool;
+    [SerializeField] GameObject item;
 
     void Awake()
     {
@@ -97,5 +98,10 @@ public class ObstacleSpawner : MonoBehaviour
     public void SpawnSpecial()
     {
         StartCoroutine(SpawnSpecialRoutine());
+    }
+
+    public void SpawnItem()
+    {
+        Instantiate(item, obstaclePool);
     }
 }
