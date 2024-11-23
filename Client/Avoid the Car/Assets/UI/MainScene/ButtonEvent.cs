@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonEvent : MonoBehaviour
 {
@@ -35,5 +36,15 @@ public class ButtonEvent : MonoBehaviour
     {
         GameManager.Instance.GameReset();
         GameManager.Instance.GameStart();
+    }
+
+    public void GoToRanking()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void GoToMain()
+    {
+        SceneManager.LoadScene(1);
     }
 }

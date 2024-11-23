@@ -106,7 +106,7 @@ public class BackendRank
         return firstRankInfo;
     }
 
-    public void RankGet()
+    public List<List<string>> RankListGet()
     {
         string rankUUID = "0193069c-f85c-732c-bdb5-4934d89d9245"; //리더보드 UUID값
         var bro = Backend.URank.User.GetRankList(rankUUID);
@@ -114,24 +114,25 @@ public class BackendRank
         if (bro.IsSuccess() == false)
         {
             Debug.LogError("랭킹 조회중 오류가 발생했습니다. : " + bro);
-            return;
+            return null;
         }
 
         Debug.Log("랭킹 조회에 성공했습니다. : " + bro);
 
         Debug.Log("총 랭킹 등록 유저 수 : " + bro.GetFlattenJSON()["totalCount"].ToString());
 
+        List<List<string>> rankList = new List<List<string>>();     
         foreach (LitJson.JsonData jsonData in bro.FlattenRows())
         {
-            StringBuilder info = new StringBuilder();
-
-            info.AppendLine("순위 : " + jsonData["rank"].ToString());
-            info.AppendLine("닉네임 : " + jsonData["nickname"].ToString());
-            info.AppendLine("점수 : " + jsonData["score"].ToString());
-            info.AppendLine("gamerInDate : " + jsonData["gamerInDate"].ToString());
-            info.AppendLine("정렬번호 : " + jsonData["index"].ToString());
-            info.AppendLine();
-            Debug.Log(info);
+            List<string> rankInfo = new List<string>
+            {
+                jsonData.ContainsKey("rank") ? jsonData["rank"].ToString() + "등" : "Unknown",
+                jsonData.ContainsKey("nickname") ? jsonData["nickname"].ToString() : "Unknown",
+                jsonData.ContainsKey("score") ? jsonData["score"].ToString() + "점" : "0점"
+            };
+            
+            rankList.Add(rankInfo);
         }
+        return rankList;
     }
 }
