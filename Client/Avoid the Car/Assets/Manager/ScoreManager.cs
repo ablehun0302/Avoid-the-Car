@@ -28,6 +28,7 @@ public class ScoreManager : MonoBehaviour
 
     public static ScoreManager Instance { get; set; }
     PlayerMovement player;
+    PlayerCollision playerCollision;
     GameManager gameManager;
     AudioSource bgmusic;
     AudioSource bonusScoreSound;
@@ -43,6 +44,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         player = PlayerMovement.Instance;
+        playerCollision = player.GetComponent<PlayerCollision>();
         gameManager = GameManager.Instance;
         bgmusic = gameManager.bgmusic;
         bonusScoreSound = player.GetComponent<AudioSource>();
@@ -117,7 +119,15 @@ public class ScoreManager : MonoBehaviour
             bonusText.GetComponent<TextMeshPro>().text = "+ " + bonusScore +"점";
 
             bonusScoreSound.Play();
-            BackendGameLog.Instance.DashSuccessNumber ++;
+
+            if (playerCollision.Cheat) 
+            {
+                BackendGameLog.Instance.ItemSuccessNumber ++;
+            }
+            else 
+            {
+                BackendGameLog.Instance.DashSuccessNumber ++;
+            }
         }
     }
 }

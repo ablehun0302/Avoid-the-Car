@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayerCollision : MonoBehaviour
 {
-    bool cheat = false;         //치트 변수 - 무적상태로 변함
+    public bool Cheat { get; private set; } = false;         //치트 변수 - 무적상태로 변함
     int itemCoolTime = 8;
 
     Animator animator;          //플레이어 텍스쳐 변환용 애니메이터
@@ -44,7 +44,7 @@ public class PlayerCollision : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (!other.gameObject.CompareTag("Obstacle") || gameManager.IsGameOver || cheat) { return; }
+        if (!other.gameObject.CompareTag("Obstacle") || gameManager.IsGameOver || Cheat) { return; }
         
         //게임오버 동작 실행
         animator.SetBool("isDead", true);
@@ -69,7 +69,7 @@ public class PlayerCollision : MonoBehaviour
 
         //유저 점수 로그 입력
         if ( BackendGameData.userData == null ) { return; }
-        BackendGameLog.Instance.DeadLogInsert(scoreManager.Score, scoreManager.ElapsedSec, obstacleName);
+        BackendGameLog.Instance.DeadLogInsert(obstacleName);
 
         //유저 데이터 수정
         BackendGameData.Instance.UserDataSet(scoreManager.Score, 0, obstacleName);
@@ -79,12 +79,13 @@ public class PlayerCollision : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Item") || gameManager.IsGameOver) return;
 
-        cheat = true;
+        Cheat = true;
+        BackendGameLog.Instance.ItemUseCount ++;
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         myCollider.sharedMaterial = noBounce;
         miscGroup.SetActive(true);
         itemVFX.Play();
-
+        
         StopCoroutine(InvulnerabilityRoutine());
         StartCoroutine(InvulnerabilityRoutine());
 
@@ -108,6 +109,6 @@ public class PlayerCollision : MonoBehaviour
         myCollider.sharedMaterial = playerBounce;
         miscGroup.SetActive(false);
         itemVFX.Stop();
-        cheat = false;
+        Cheat = false;
     }
 }

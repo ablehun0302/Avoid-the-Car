@@ -6,6 +6,7 @@ using System;
 
 public class BackendGameLog
 {
+    ScoreManager scoreManager = ScoreManager.Instance;
     static BackendGameLog _instance = null;
 
     public static BackendGameLog Instance
@@ -24,6 +25,8 @@ public class BackendGameLog
     //로그 작성용 필드
     public int DashCount { get; set; } = 0;
     public int DashSuccessNumber { get; set; } = 0;
+    public int ItemUseCount { get; set; } = 0;
+    public int ItemSuccessNumber { get; set; } = 0;
     
 
     /// <summary>
@@ -55,16 +58,17 @@ public class BackendGameLog
     /// <summary>
     /// 유저가 죽었을 때 몇 점대 인지, 무엇에 부딪혔는지를 로그에 입력하는 메서드
     /// </summary>
-    /// <param name="score">점수</param>
     /// <param name="something">부딛힌 장애물</param>
-    public void DeadLogInsert(int score, int time, string something)
+    public void DeadLogInsert(string something)
     {
         Param param = new Param();
 
-        param.Add("score", score);
-        param.Add("time", time);
+        param.Add("score", scoreManager.Score);
+        param.Add("time", scoreManager.ElapsedSec);
         param.Add("dashCount", DashCount);
         param.Add("dashSuccessNumber", DashSuccessNumber);
+        param.Add("ItemUseCount", ItemUseCount);
+        param.Add("ItemSuccessNumber", ItemSuccessNumber);
         param.Add("deadBy", something);
 
         Debug.Log("게임 로그 삽입을 시도합니다.");

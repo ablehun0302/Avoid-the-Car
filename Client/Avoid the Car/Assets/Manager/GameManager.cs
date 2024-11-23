@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour
 
         BackendGameLog.Instance.DashCount = 0;
         BackendGameLog.Instance.DashSuccessNumber = 0;
+        BackendGameLog.Instance.ItemUseCount = 0;
+        BackendGameLog.Instance.ItemSuccessNumber = 0;
 
         IsGameOver = false;
 
