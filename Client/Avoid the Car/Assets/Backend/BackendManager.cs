@@ -19,7 +19,7 @@ public class BackendManager : MonoBehaviour
 #else
     Debug.unityLogger.logEnabled = false;
 #endif
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         //게임 시작 시 들어온 시간 체크
         startTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -35,7 +35,7 @@ public class BackendManager : MonoBehaviour
             Debug.LogError("초기화 실패 : " + bro);
         }
 
-        //Login(); 게스트로그인
+        Login(); //게스트로그인
     }
 
     void Login()
@@ -48,7 +48,10 @@ public class BackendManager : MonoBehaviour
         if (BackendGameData.userData == null)
         {
             BackendGameData.Instance.GameDataInsert();
+            BackendLogin.Instance.CreateNickname();
         }
+
+        BackendRank.Instance.RankInsert(BackendGameData.userData.maxScore);
     }
 
     public void CustomLoginButton()

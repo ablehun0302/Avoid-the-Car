@@ -37,6 +37,11 @@ public class BackendLogin
         else
         {
             Debug.LogError("로그인이 실패했습니다. : " + bro);
+            if (bro.StatusCode == 401)
+            {
+                Backend.BMember.DeleteGuestInfo();
+                Debug.LogWarning("기기 내 게스트 정보 삭제");
+            }
         }
     }
 
@@ -104,7 +109,7 @@ public class BackendLogin
     public void CreateNickname()
     {
         int random = Random.Range(10000, 99999);
-        string nickname = "익명"+ random;
+        string nickname = "익명" + random;
         UpdateNickname(nickname);
     }
 }
