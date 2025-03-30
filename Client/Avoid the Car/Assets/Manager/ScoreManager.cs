@@ -26,26 +26,20 @@ public class ScoreManager : MonoBehaviour
     float spawnRateReduction = 0.1f;
     float specialRateReduction = 0.2f;
 
-    public static ScoreManager Instance { get; set; }
+    GameManager gameManager;
     PlayerMovement player;
     PlayerCollision playerCollision;
-    GameManager gameManager;
     AudioSource bgmusic;
     AudioSource bonusScoreSound;
     [SerializeField] ObstacleSpawner obstacleSpawner;
     [SerializeField] GameObject fireworkVFX;
     [SerializeField] GameObject bonusScoreText;
 
-    void Awake()
-    {
-        Instance = this;
-    }
-
     void Start()
     {
-        player = PlayerMovement.Instance;
-        playerCollision = player.GetComponent<PlayerCollision>();
         gameManager = GameManager.Instance;
+        player = gameManager.GetPlayerMovement();
+        playerCollision = player.GetComponent<PlayerCollision>();
         bgmusic = gameManager.bgmusic;
         bonusScoreSound = player.GetComponent<AudioSource>();
     }

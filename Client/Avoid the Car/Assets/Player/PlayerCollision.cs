@@ -11,11 +11,11 @@ public class PlayerCollision : MonoBehaviour
     public bool Cheat { get; private set; } = false;         //치트 변수 - 무적상태로 변함
     int itemCoolTime = 8;
 
+    GameManager gameManager;
     Animator animator;          //플레이어 텍스쳐 변환용 애니메이터
     Rigidbody2D myRigidbody;
     Collider2D myCollider;
     ScoreManager scoreManager;
-    GameManager gameManager;
     [SerializeField] GameObject explosionVFX;   //폭파 파티클
     [SerializeField] GameObject hitVFX;         //부딪힘 파티클
     [SerializeField] ParticleSystem itemVFX;
@@ -26,11 +26,11 @@ public class PlayerCollision : MonoBehaviour
 
     void Start()
     {
+        gameManager = GameManager.Instance;
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
-        scoreManager = ScoreManager.Instance;
-        gameManager = GameManager.Instance;
+        scoreManager = gameManager.GetScoreManager();
     }
 
     /*void OnCheat(InputValue value)

@@ -32631,6 +32631,8 @@ MonoBehaviour:
   gameOverCanvas: {fileID: 1490446948}
   mainText: {fileID: 597214340}
   subText: {fileID: 1868475920}
+  playerMovement: {fileID: 6828890898339442273}
+  scoreManager: {fileID: 1884199030}
 --- !u!114 &1884199030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38891,6 +38893,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
+--- !u!114 &6828890898339442273 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3125650039674875708, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
+  m_PrefabInstance: {fileID: 6828890898339442272}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82aeb367052624b47a8641662d2246c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

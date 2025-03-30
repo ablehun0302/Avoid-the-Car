@@ -14,7 +14,7 @@ public class ScoreWriter : MonoBehaviour
     void Start()
     {
         scoreText = GetComponent<TextMeshProUGUI>();
-        scoreManager = ScoreManager.Instance;
+        scoreManager = GameManager.Instance.GetScoreManager();
     }
 
     void Update()

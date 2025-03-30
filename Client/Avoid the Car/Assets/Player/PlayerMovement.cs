@@ -21,23 +21,24 @@ public class PlayerMovement : MonoBehaviour
     float dashCooldownTime = 3;
     Color waitingColor = new Color(1, 1, 1, 0.5f);
 
-    public static PlayerMovement Instance { get; private set; }
     Rigidbody2D playerRigidbody;
     Collider2D playerCollider;
     Animator animator;
+    PlayerInput playerInput;
     [SerializeField] Transform playerFront;
     [SerializeField] Image cooldownImage;
 
     void Awake()
     {
-        Instance = this;
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
+        playerInput = GetComponent<PlayerInput>();
     }
 
-    void OnEnable()
+    public void ResetPlayerState()
     {
+        playerInput.enabled = true;
         playerRigidbody.drag = 8;
         transform.position = Vector2.zero;
         playerRigidbody.velocity = Vector2.zero;
@@ -45,6 +46,12 @@ public class PlayerMovement : MonoBehaviour
         DashRestore();
 
         animator.SetBool("isDead", false);
+    }
+
+    public void SetGameOverState()
+    {
+        playerRigidbody.drag = 2;
+        playerInput.enabled = false;
     }
 
     //플레이어의 움직임 조작 메서드
@@ -63,11 +70,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value.isPressed && hasDash)
         {
+            //조작 방향으로 뛰어간다
             Vector2 playerDirection = (playerFront.position - transform.position).normalized;
             playerRigidbody.AddForce(playerDirection * dashSpeed, ForceMode2D.Impulse);
+            //충돌판정 해제, 대시 대기상태
             playerCollider.enabled = false;
-            cooldownImage.color = waitingColor;
             hasDash = false;
+            
+            cooldownImage.color = waitingColor;
             BackendGameLog.Instance.DashCount ++;
         }
     }

@@ -14,8 +14,9 @@ public class StaticObstacle : ObstaclePositioner
     SpriteRenderer tireSprite;
     SpriteRenderer shadowSprite;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         gameObject.name = obstacleName;
         
         shadow = transform.GetChild(0);

@@ -15,12 +15,13 @@ public class MovingObstacle : ObstaclePositioner
     Transform front;
     ScoreManager scoreManager;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         gameObject.name = obstacleName;
         rigidBody = GetComponent<Rigidbody2D>();
         front = transform.GetChild(0);
-        scoreManager = ScoreManager.Instance;
+        scoreManager = GameManager.Instance.GetScoreManager();
 
         SetOutsidePosition();
         LookAtPlayer();

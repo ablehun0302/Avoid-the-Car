@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class ObstaclePositioner : MonoBehaviour
 {
-    PlayerMovement player = PlayerMovement.Instance;
-    
     int outsideRadius = 40;
     float insideRadius = 15;
+
+    PlayerMovement player;
+
+    protected virtual void Start()
+    {
+        player = GameManager.Instance.GetPlayerMovement();
+    }
 
     /// <summary>
     /// 맵 바깥쪽에 장애물을 랜덤으로 배치하는 메서드
@@ -16,7 +21,7 @@ public class ObstaclePositioner : MonoBehaviour
     {
         float randomAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
 
-        Vector2 randomDirection = new Vector2( Mathf.Cos(randomAngle), Mathf.Sin(randomAngle) );
+        Vector2 randomDirection = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
 
         Vector2 randomPosition = (randomDirection * outsideRadius) + (Vector2)player.transform.position;
 
@@ -33,7 +38,7 @@ public class ObstaclePositioner : MonoBehaviour
 
         float randomRadius = Random.Range(0f, insideRadius);
 
-        Vector2 randomDirection = new Vector2( Mathf.Cos(randomAngle), Mathf.Sin(randomAngle) );
+        Vector2 randomDirection = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
 
         Vector2 randomPosition = (randomDirection * randomRadius) + (Vector2)player.transform.position;
 

@@ -9,14 +9,16 @@ public class FollowTowards : MonoBehaviour
     float timer = 0f;
 
     PlayerMovement player;
-    Rigidbody2D thisRigidbody;
     ScoreManager scoreManager;
+    Rigidbody2D thisRigidbody;
 
     void Start()
     {
-        player = PlayerMovement.Instance;
+        GameManager gameManager = GameManager.Instance;
+        
+        player = gameManager.GetPlayerMovement();
+        scoreManager = gameManager.GetScoreManager();
         thisRigidbody = GetComponent<Rigidbody2D>();
-        scoreManager = ScoreManager.Instance;
     }
 
     void FixedUpdate()

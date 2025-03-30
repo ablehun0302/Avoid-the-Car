@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using UnityEngine.InputSystem;
 using DG.Tweening;
 using TMPro;
 
@@ -15,11 +13,6 @@ public class GameManager : MonoBehaviour
     
     Vector3 textScale = new(1, 1, 1);
 
-    PlayerMovement player;
-    ScoreManager scoreManager;
-    PlayerCollision playerCollision;
-    Rigidbody2D playerRigidbody;
-    PlayerInput playerInput;
     public AudioSource bgmusic;
     [SerializeField] CinemachineVirtualCamera followCamera;
     [SerializeField] GameObject obstacleSpawner;
@@ -34,6 +27,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameOverCanvas;
     [SerializeField] TextMeshProUGUI mainText;
     [SerializeField] TextMeshProUGUI subText;
+    [Header("전역변수 관련 필드")]
+    [SerializeField] PlayerMovement playerMovement;
+        public PlayerMovement GetPlayerMovement() { return playerMovement; }
+    [SerializeField] ScoreManager scoreManager;
+        public ScoreManager GetScoreManager() { return scoreManager; }
 
     public static GameManager Instance { get; private set; }
 
@@ -44,11 +42,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        player = PlayerMovement.Instance;
-        scoreManager = ScoreManager.Instance;
-        playerCollision = player.GetComponent<PlayerCollision>();
-        playerRigidbody = player.GetComponent<Rigidbody2D>();
-        playerInput = player.GetComponent<PlayerInput>();
         bgmusic = GetComponent<AudioSource>();
     }
 
@@ -123,8 +116,7 @@ public class GameManager : MonoBehaviour
     void GameSet()
     {
         //플레이어 움직임 활성화
-        player.enabled = true;
-        playerInput.enabled = true;
+        playerMovement.ResetPlayerState();
 
         followCamera.enabled = true;
 
@@ -142,9 +134,7 @@ public class GameManager : MonoBehaviour
         IsGameOver = true;
 
         //장애물에 부딛힐 시 플레이어 움직임 정지
-        player.enabled = false;
-        playerInput.enabled = false;
-        playerRigidbody.drag = 2; //사망 모션
+        playerMovement.SetGameOverState();
 
         followCamera.enabled = false;
 

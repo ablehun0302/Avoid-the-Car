@@ -18,7 +18,7 @@ public class TimeWriter : MonoBehaviour
 
     void Start()
     {
-        scoreManager = ScoreManager.Instance;
+        scoreManager = GameManager.Instance.GetScoreManager();
         timerText = GetComponent<TextMeshProUGUI>();
     }
 

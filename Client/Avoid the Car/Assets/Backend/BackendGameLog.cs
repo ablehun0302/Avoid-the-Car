@@ -6,7 +6,7 @@ using System;
 
 public class BackendGameLog
 {
-    ScoreManager scoreManager = ScoreManager.Instance;
+    ScoreManager scoreManager = GameManager.Instance.GetScoreManager();
     static BackendGameLog _instance = null;
 
     public static BackendGameLog Instance
