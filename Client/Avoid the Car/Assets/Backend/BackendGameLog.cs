@@ -84,4 +84,12 @@ public class BackendGameLog
             Debug.Log("게임 로그 삽입에 성공했습니다. : " + callback);
         });
     }
+
+    public void ResetDeadLogFields()
+    {
+        DashCount = 0;
+        DashSuccessNumber = 0;
+        ItemUseCount = 0;
+        ItemSuccessNumber = 0;
+    }
 }

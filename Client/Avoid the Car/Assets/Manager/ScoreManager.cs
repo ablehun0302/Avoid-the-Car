@@ -124,4 +124,12 @@ public class ScoreManager : MonoBehaviour
             }
         }
     }
+
+    public void ResetScoreStats()
+    {
+        Score = 0;
+        ElapsedSec = 0;
+        SecDividedByTen = 0;
+        SpeedFactor = 1;
+    }
 }

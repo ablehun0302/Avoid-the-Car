@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameOverCanvas;
     [SerializeField] TextMeshProUGUI mainText;
     [SerializeField] TextMeshProUGUI subText;
+    
     [Header("전역변수 관련 필드")]
     [SerializeField] PlayerMovement playerMovement;
         public PlayerMovement GetPlayerMovement() { return playerMovement; }
@@ -62,19 +63,10 @@ public class GameManager : MonoBehaviour
             Destroy(obstacle.gameObject);
         }
 
-        //scoreManager 초기화
-        scoreManager.Score = 0;
-        scoreManager.ElapsedSec = 0;
-        scoreManager.SecDividedByTen = 0;
-        scoreManager.SpeedFactor = 1f;
-
-        BackendGameLog.Instance.DashCount = 0;
-        BackendGameLog.Instance.DashSuccessNumber = 0;
-        BackendGameLog.Instance.ItemUseCount = 0;
-        BackendGameLog.Instance.ItemSuccessNumber = 0;
+        scoreManager.ResetScoreStats();
+        BackendGameLog.Instance.ResetDeadLogFields();
 
         IsGameOver = false;
-
         bgmusic.Stop();
         bgmusic.pitch = 1;
         bgmusic.Play();
