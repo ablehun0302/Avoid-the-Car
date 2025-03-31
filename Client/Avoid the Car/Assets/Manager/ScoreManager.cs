@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,8 +10,8 @@ public class ScoreManager : MonoBehaviour
     public int Score { get; set; } = 0;
     public int ElapsedSec { get; set; } = 0;
     public int SecDividedByTen { get; set; } = 0;
-
     public float SpeedFactor { get; set; } = 1f;
+    public Coroutine coroutine;
 
     //난이도, 점수 조절값
     int spawnEventInterval = 10;
@@ -23,8 +21,8 @@ public class ScoreManager : MonoBehaviour
     float pitchIncreasement = 0.05f;
 
     float speedIncreasement = 0.1f;
-    float spawnRateReduction = 0.1f;
-    float specialRateReduction = 0.2f;
+    int spawnRateReduction = 1;
+    int specialRateReduction = 2;
 
     GameManager gameManager;
     PlayerMovement player;
@@ -48,7 +46,7 @@ public class ScoreManager : MonoBehaviour
     /// 시간 경과에 의해 실행되는 행동들
     /// </summary>
     /// <returns></returns>
-    IEnumerator TimeBasedEvents()
+    public IEnumerator TimeBasedEvents()
     {
         while (true)
         {
@@ -66,7 +64,7 @@ public class ScoreManager : MonoBehaviour
             //10초마다 실행되는 (스폰 주기 설정)
             if (ElapsedSec % spawnEventInterval == 0)
             {
-                if (obstacleSpawner.CurrentSpawnRate > 0.5) { obstacleSpawner.CurrentSpawnRate -= spawnRateReduction; }
+                if (obstacleSpawner.CurrentSpawnRate > 5) { obstacleSpawner.CurrentSpawnRate -= spawnRateReduction; }
                 if (ElapsedSec != spawnEventInterval) { obstacleSpawner.CurrentSpecialRate -= specialRateReduction; }
             }
 
@@ -74,7 +72,6 @@ public class ScoreManager : MonoBehaviour
             if (ElapsedSec % speedEventInterval == 0)
             {
                 bgmusic.pitch += pitchIncreasement;
-
                 SpeedFactor += speedIncreasement;
             }
 
@@ -91,11 +88,6 @@ public class ScoreManager : MonoBehaviour
                     break;
             }
         }
-    }
-
-    public void EventCoroutine()
-    {
-        StartCoroutine(TimeBasedEvents());
     }
 
     public IEnumerator IncreaseBonusScore(int bonusScore)

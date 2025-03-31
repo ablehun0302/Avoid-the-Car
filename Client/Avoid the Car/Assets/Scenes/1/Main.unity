@@ -6459,13 +6459,13 @@ MonoBehaviour:
   - {fileID: 7056055278891506347, guid: 6db7b6c71897ec14488d6cb1b5fd26e2, type: 3}
   - {fileID: 5997191759192191343, guid: 4ea93ac40be46d14bb3c105509347d83, type: 3}
   spawnFrequency: 05000000050000000500000002000000
-  spawnRate: 1
+  spawnRate: 10
   specialPrefabs:
   - {fileID: 943746642805578680, guid: 1c6b27d63f0906342a7b4d461c6a64ea, type: 3}
   - {fileID: 6884402298200256613, guid: f1e9c764790ff574d825b22790feb9e2, type: 3}
   - {fileID: 1188196407959064763, guid: 333acb355454c5244b99c63280e6df65, type: 3}
   specialCounts: 030000000300000001000000
-  specialRate: 10
+  specialRate: 100
   obstaclePool: {fileID: 277040803}
   item: {fileID: 770733355650639306, guid: 60bc36afb47738246a8b17a69c6ae135, type: 3}
 --- !u!4 &427548186

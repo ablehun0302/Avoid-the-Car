@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         obstacleSpawner.SetActive(true);
 
         //스코어 더하기 실행
-        scoreManager.EventCoroutine();
+        scoreManager.coroutine = StartCoroutine(scoreManager.TimeBasedEvents());
     }
 
     /// <summary>
@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
         obstacleSpawner.SetActive(false);
 
         //스코어 더하기 중지
-        scoreManager.StopAllCoroutines();
+        if (scoreManager.coroutine != null) StopCoroutine(scoreManager.coroutine);
 
         inGameCanvas.SetActive(false);
         gameOverCanvas.SetActive(true);
