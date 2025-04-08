@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Linq;
 
 /// <summary>
 /// 플레이어의 움직임을 구현
@@ -22,17 +21,18 @@ public class PlayerMovement : MonoBehaviour
     Color waitingColor = new Color(1, 1, 1, 0.5f);
 
     Rigidbody2D playerRigidbody;
-    Collider2D playerCollider;
-    Animator animator;
+    Collider2D deathCollider;
+        string deathColliderName = "DeathCollider";
     PlayerInput playerInput;
+    [SerializeField] Animator animator;
     [SerializeField] Transform playerFront;
     [SerializeField] Image cooldownImage;
 
     void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
-        playerCollider = GetComponent<Collider2D>();
-        animator = GetComponent<Animator>();
+        deathCollider = GetComponentsInChildren<Collider2D>()
+            .FirstOrDefault(c => c.gameObject.name == deathColliderName);
         playerInput = GetComponent<PlayerInput>();
     }
 
@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
             Vector2 playerDirection = (playerFront.position - transform.position).normalized;
             playerRigidbody.AddForce(playerDirection * dashSpeed, ForceMode2D.Impulse);
             //충돌판정 해제, 대시 대기상태
-            playerCollider.enabled = false;
+            deathCollider.enabled = false;
             hasDash = false;
             
             cooldownImage.color = waitingColor;
@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            if (timer >= dashInvulnerableTime) { playerCollider.enabled = true; }
+            if (timer >= dashInvulnerableTime) { deathCollider.enabled = true; }
             
             if (timer >= dashCooldownTime) { DashRestore(); }
 

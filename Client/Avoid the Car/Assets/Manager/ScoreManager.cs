@@ -26,7 +26,8 @@ public class ScoreManager : MonoBehaviour
 
     GameManager gameManager;
     PlayerMovement player;
-    PlayerCollision playerCollision;
+    DeathCollision deathCollision;
+    //TriggerCollision triggerCollision;
     AudioSource bgmusic;
     AudioSource bonusScoreSound;
     [SerializeField] ObstacleSpawner obstacleSpawner;
@@ -37,7 +38,7 @@ public class ScoreManager : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         player = gameManager.GetPlayerMovement();
-        playerCollision = player.GetComponent<PlayerCollision>();
+        deathCollision = player.GetComponentInChildren<DeathCollision>();
         bgmusic = gameManager.bgmusic;
         bonusScoreSound = player.GetComponent<AudioSource>();
     }
@@ -106,7 +107,7 @@ public class ScoreManager : MonoBehaviour
 
             bonusScoreSound.Play();
 
-            if (playerCollision.Cheat) 
+            if (deathCollision.IsInvulnerable) 
             {
                 BackendGameLog.Instance.ItemSuccessNumber ++;
             }

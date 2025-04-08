@@ -38812,6 +38812,14 @@ PrefabInstance:
       propertyPath: cooldownImage
       value: 
       objectReference: {fileID: 579912099}
+    - target: {fileID: 3178472191194233855, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
+      propertyPath: miscGroup
+      value: 
+      objectReference: {fileID: 1396607722}
+    - target: {fileID: 3178472191194233855, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
+      propertyPath: miscImage
+      value: 
+      objectReference: {fileID: 1762309806}
     - target: {fileID: 3654718228931215683, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -38888,7 +38896,8 @@ PrefabInstance:
       propertyPath: clearBehavior
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7319442931826143479, guid: b64d7b530e252ea448f5a4fd8ccef70a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
