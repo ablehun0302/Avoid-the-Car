@@ -17,8 +17,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera followCamera;
     [SerializeField] GameObject obstacleSpawner;
     [SerializeField] Transform obstaclePool;
-    [Header("타이틀 캔버스 관련 필드")]
-    [SerializeField] GameObject titleCanvas;
     [Header("인게임 캔버스 관련 필드")]
     [SerializeField] GameObject inGameCanvas;
     [SerializeField] GameObject[] startTexts;
@@ -33,6 +31,8 @@ public class GameManager : MonoBehaviour
         public PlayerMovement GetPlayerMovement() { return playerMovement; }
     [SerializeField] ScoreManager scoreManager;
         public ScoreManager GetScoreManager() { return scoreManager; }
+    [SerializeField] MainModel mainModel;
+        public MainModel GetMainModel() { return mainModel; }
 
     public static GameManager Instance { get; private set; }
 
@@ -77,10 +77,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameStart()
     {
-        titleCanvas.SetActive(false);
-        inGameCanvas.SetActive(true);   //인게임 캔버스 켜기
-        gameOverCanvas.SetActive(false);
-
         Sequence countSequence = DOTween.Sequence();
         for (int i = 0; i < startTexts.Length; i++)
         {
