@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class ButtonEvent : MonoBehaviour
+public class MainView : MonoBehaviour
 {
     MainPresenter presenter;
 
@@ -20,6 +19,11 @@ public class ButtonEvent : MonoBehaviour
     [SerializeField] TextMeshProUGUI warningText;
     [SerializeField] TextMeshProUGUI maxScoreText;
     [SerializeField] TextMeshProUGUI firstRankText;
+    [SerializeField] TextMeshProUGUI inGameFirstRankText;
+    [SerializeField] TextMeshProUGUI inGameScoreText;
+    [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] TextMeshProUGUI lastScoreText;
+    [SerializeField] TextMeshProUGUI lastTimerText;
 
     [Header("버튼")]
     [SerializeField] Button mainBtn;
@@ -62,15 +66,61 @@ public class ButtonEvent : MonoBehaviour
         warningText.text = text;
     }
 
+    public void SetScoreText(int score)
+    {
+        string scoreText = "점수: " + score;
+        inGameScoreText.text = scoreText;
+        lastScoreText.text = scoreText;
+    }
+
+    public void SetTimerText(int secDividedByTen, int elapsedSec)
+    {
+        int millisec = secDividedByTen * 10;
+        int sec = elapsedSec % 60;
+        int minute = elapsedSec / 60;
+
+        string millisecString = millisec.ToString("D2");
+        string secString = sec.ToString("D2");
+
+        string timeText = $"{minute}:{secString}.{millisecString}";
+
+        timerText.text = "시간 "+timeText;
+        lastTimerText.text = "버틴시간 "+timeText;
+    }
+
     void SetMaxScoreText()
     {
         if (BackendGameData.userData == null) { return; }
         maxScoreText.text = "최고 점수: " + BackendGameData.userData.maxScore;
     }
 
+    void SetMainFirstRankText(string[] rankInfo)
+    {
+        if (rankInfo != null)
+        {
+            firstRankText.text = string.Format("{0}이(가) 1등 기록중!", rankInfo[0]);
+        }
+        else
+        {
+            firstRankText.text = "랭킹 정보를 불러올 수 없습니다.";
+        }
+    }
+
+    void SetInGameFirstRankText(string[] rankInfo)
+    {
+        if (rankInfo != null)
+        {
+            inGameFirstRankText.text = string.Format("{0}의 최고기록\n{1}점을 넘겨보자!", rankInfo[0], rankInfo[1]);
+        }
+        else
+        {
+            inGameFirstRankText.text = "최대한 오래 버텨보자!";
+        }
+    }
+
     // 캔버스 관련 메서드
 
-    public void MainUI(string rankText)
+    public void MainUI(string[] rankInfo)
     {
         titleCanvas.SetActive(true);    // 켜기
         mainGroup.SetActive(true);      // 켜기
@@ -79,8 +129,8 @@ public class ButtonEvent : MonoBehaviour
         gameOverCanvas.SetActive(false);
 
         SetMaxScoreText();
+        SetMainFirstRankText(rankInfo);
         warningText.text = "";
-        firstRankText.text = rankText;
     }
 
     public void InfoUI()
@@ -89,11 +139,18 @@ public class ButtonEvent : MonoBehaviour
         mainGroup.SetActive(false);
     }
 
-    public void InGameUI()
+    public void InGameUI(string[] rankInfo)
     {
         inGameCanvas.SetActive(true);   // 켜기
         titleCanvas.SetActive(false);
         gameOverCanvas.SetActive(false);
+        SetInGameFirstRankText(rankInfo);
+    }
+
+    public void GameOverUI()
+    {
+        inGameCanvas.SetActive(false);
+        gameOverCanvas.SetActive(true);
     }
 
     // 씬 이동 관련 메서드
@@ -101,10 +158,5 @@ public class ButtonEvent : MonoBehaviour
     public void GoToRanking()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void GoToMain()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

@@ -1,12 +1,11 @@
 using UnityEngine;
 using BackEnd;
 using System;
-using System.Collections.Generic;
 
 public class MainModel : MonoBehaviour
 {
     public string Nickname { get; private set; }
-    string firstRankTextFormat = "{0}이(가) 1등 기록중!";
+    public string[] FirstRankInfo { get; private set; }
 
     public void GetUserNickname(Action<string> onComplete)
     {
@@ -46,23 +45,10 @@ public class MainModel : MonoBehaviour
         return BackendLogin.Instance.UpdateNickname(nickname);
     }
 
-    public string GetFirstRankText()
+    public string[] UpdateFirstRankInfo()
     {
-        List<string> firstRankInfo = BackendRank.Instance.FirstRankGet();
-        string result;
-
-        if (firstRankInfo != null && firstRankInfo.Count >= 2)
-        {
-            string playerName = firstRankInfo[0]; // 첫 번째 요소
-            string playerScore = firstRankInfo[1]; // 두 번째 요소
-
-            result = string.Format(firstRankTextFormat, playerName, playerScore);
-        }
-        else
-        {
-            result = "랭킹 정보를 불러올 수 없습니다.";
-        }
-
-        return result;
+        FirstRankInfo = BackendRank.Instance.FirstRankGet();
+        Debug.Log(FirstRankInfo[0]+ "\n" + FirstRankInfo[1]);
+        return FirstRankInfo;
     }
 }

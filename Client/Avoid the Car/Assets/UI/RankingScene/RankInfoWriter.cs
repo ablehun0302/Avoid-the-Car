@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RankInfoWriter : MonoBehaviour
 {
@@ -14,11 +14,17 @@ public class RankInfoWriter : MonoBehaviour
         foreach (List<string> rankInfo in rankList)
         {
             GameObject obj = Instantiate(rankingGroup, transform);
-            
+
             for (int i = 0; i < rankInfo.Count; i++)
             {
                 obj.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = rankInfo[i];
             }
         }
     }
+
+    public void GoToMain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+    
 }

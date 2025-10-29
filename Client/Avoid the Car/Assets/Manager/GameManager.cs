@@ -3,12 +3,15 @@ using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
 using TMPro;
+using System;
 
 /// <summary>
 /// 게임의 흐름을 제어하는 메서드 모음
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    public event Action OnGameOver;
+
     public bool IsGameOver { get; private set; } = false;
     
     Vector3 textScale = new(1, 1, 1);
@@ -18,11 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject obstacleSpawner;
     [SerializeField] Transform obstaclePool;
     [Header("인게임 캔버스 관련 필드")]
-    [SerializeField] GameObject inGameCanvas;
     [SerializeField] GameObject[] startTexts;
     [SerializeField] GameObject firstRankText;
     [Header("게임오버 캔버스 관련 필드")]
-    [SerializeField] GameObject gameOverCanvas;
     [SerializeField] TextMeshProUGUI mainText;
     [SerializeField] TextMeshProUGUI subText;
     
@@ -131,12 +132,11 @@ public class GameManager : MonoBehaviour
         //스코어 더하기 중지
         if (scoreManager.coroutine != null) StopCoroutine(scoreManager.coroutine);
 
-        inGameCanvas.SetActive(false);
-        gameOverCanvas.SetActive(true);
+        OnGameOver?.Invoke();
         
         //랭킹 비교 후 텍스트 변경
         if (BackendGameData.userData == null) return;
-        List<string> firstRankInfo = BackendRank.Instance.FirstRankGet();
+        string[] firstRankInfo = BackendRank.Instance.FirstRankGet();
         string firstRankNickname = firstRankInfo[0];
         int firstRankScore = int.Parse(firstRankInfo[1]);
 

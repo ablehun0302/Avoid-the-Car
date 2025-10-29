@@ -721,7 +721,6 @@ GameObject:
   - component: {fileID: 31868174}
   - component: {fileID: 31868176}
   - component: {fileID: 31868175}
-  - component: {fileID: 31868177}
   m_Layer: 5
   m_Name: TimerText
   m_TagString: Untagged
@@ -768,7 +767,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2DC\uAC04 00:00.00"
+  m_text: "\uC2DC\uAC04 0:00.00"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98caa25839fac2942983a06698b0101f, type: 2}
   m_sharedMaterial: {fileID: 8610275499380727057, guid: 98caa25839fac2942983a06698b0101f, type: 2}
@@ -845,19 +844,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31868173}
   m_CullTransparentMesh: 1
---- !u!114 &31868177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31868173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0600bb96b552b024db8ef6c5c0e231a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sourceText: "\uC2DC\uAC04 "
 --- !u!1 &32743898
 GameObject:
   m_ObjectHideFlags: 0
@@ -13013,7 +12999,6 @@ GameObject:
   - component: {fileID: 805049783}
   - component: {fileID: 805049786}
   - component: {fileID: 805049785}
-  - component: {fileID: 805049784}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -13040,19 +13025,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035, y: -199.6}
   m_SizeDelta: {x: 971.4, y: 81.67}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &805049784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805049782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c60e5d8b4fc4e4bb11c35f2971e4e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sourceText: "\uC810\uC218: {0}"
 --- !u!114 &805049785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18570,7 +18542,7 @@ GameObject:
   - component: {fileID: 1113971122}
   - component: {fileID: 1113971121}
   m_Layer: 0
-  m_Name: ButtonManager
+  m_Name: MainView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18597,6 +18569,11 @@ MonoBehaviour:
   warningText: {fileID: 218316809}
   maxScoreText: {fileID: 602682829}
   firstRankText: {fileID: 1210539261}
+  inGameFirstRankText: {fileID: 1535664365}
+  inGameScoreText: {fileID: 1649893660}
+  timerText: {fileID: 31868175}
+  lastScoreText: {fileID: 805049785}
+  lastTimerText: {fileID: 1333271085}
   mainBtn: {fileID: 1193053821}
   updateNameBtn: {fileID: 2131460677}
   infoBtn: {fileID: 1970985034}
@@ -18612,12 +18589,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113971120}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.099876, y: 4.0885787, z: 7.055891}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1884199028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1119954716
 GameObject:
@@ -22823,7 +22800,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1333271084}
   - component: {fileID: 1333271087}
-  - component: {fileID: 1333271086}
   - component: {fileID: 1333271085}
   m_Layer: 5
   m_Name: TimerText
@@ -22940,19 +22916,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1333271086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333271083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0600bb96b552b024db8ef6c5c0e231a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sourceText: "\uBC84\uD2F4 \uC2DC\uAC04 "
 --- !u!222 &1333271087
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27807,7 +27770,6 @@ GameObject:
   - component: {fileID: 1649893659}
   - component: {fileID: 1649893662}
   - component: {fileID: 1649893660}
-  - component: {fileID: 1649893663}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -27854,7 +27816,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC810\uC218: "
+  m_text: "\uC810\uC218: 0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98caa25839fac2942983a06698b0101f, type: 2}
   m_sharedMaterial: {fileID: 8610275499380727057, guid: 98caa25839fac2942983a06698b0101f, type: 2}
@@ -27931,19 +27893,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649893658}
   m_CullTransparentMesh: 1
---- !u!114 &1649893663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649893658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c60e5d8b4fc4e4bb11c35f2971e4e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sourceText: "\uC810\uC218: {0}"
 --- !u!1 &1651258385
 GameObject:
   m_ObjectHideFlags: 0
@@ -32625,6 +32574,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 773149498}
+  - {fileID: 1113971122}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1884199029
@@ -32643,14 +32593,12 @@ MonoBehaviour:
   followCamera: {fileID: 894912770}
   obstacleSpawner: {fileID: 427548184}
   obstaclePool: {fileID: 277040803}
-  inGameCanvas: {fileID: 286329975}
   startTexts:
   - {fileID: 427327533}
   - {fileID: 1256629473}
   - {fileID: 1876799999}
   - {fileID: 50568728}
   firstRankText: {fileID: 1535664363}
-  gameOverCanvas: {fileID: 1490446948}
   mainText: {fileID: 597214340}
   subText: {fileID: 1868475920}
   playerMovement: {fileID: 6828890898339442273}
@@ -38980,7 +38928,6 @@ SceneRoots:
   - {fileID: 319139617}
   - {fileID: 660269897}
   - {fileID: 1884199028}
-  - {fileID: 1113971122}
   - {fileID: 449915632}
   - {fileID: 2096484448}
   - {fileID: 286329979}

@@ -4,16 +4,25 @@ using System.Collections.Generic;
 public class MainPresenter
 {
     GameManager gameManager;
+    ScoreManager scoreManager;
     MainModel mainModel;
-    ButtonEvent mainView;
 
-    public MainPresenter(ButtonEvent view)
+    MainView mainView;
+
+    public MainPresenter(MainView view)
     {
         gameManager = GameManager.Instance;
+        scoreManager = gameManager.GetScoreManager();
         mainModel = gameManager.GetMainModel();
         mainView = view;
 
         Initialize();
+        //model -> presenter 수신
+        scoreManager.OnScoreChanged += () =>
+            mainView.SetScoreText(scoreManager.Score);
+        scoreManager.OnScoreChanged += () =>
+            mainView.SetTimerText(scoreManager.SecDividedByTen, scoreManager.ElapsedSec);
+        gameManager.OnGameOver += mainView.GameOverUI;
     }
 
     void Initialize()
@@ -27,13 +36,17 @@ public class MainPresenter
             mainView.SetNicknameInput(mainModel.Nickname);
         });
 
-        mainView.MainUI(mainModel.GetFirstRankText());
+        mainView.MainUI(mainModel.UpdateFirstRankInfo());
     }
 
+    //텍스트 관련 메서드
+
+
+    //버튼 관련 메서드
     public void OnMainButtonClicked()
     {
         gameManager.GameReset();
-        mainView.MainUI(mainModel.GetFirstRankText());
+        mainView.MainUI(mainModel.UpdateFirstRankInfo());
     }
 
     public void OnUpdateNameClicked()
@@ -59,7 +72,7 @@ public class MainPresenter
 
     public void OnStartButtonClicked()
     {
-        mainView.InGameUI();
+        mainView.InGameUI(mainModel.FirstRankInfo);
         gameManager.GameStart();
     }
 
