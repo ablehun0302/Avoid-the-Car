@@ -81,7 +81,7 @@ public class BackendRank
         });
     }
 
-    public List<string> FirstRankGet()
+    public string[] FirstRankGet()
     {
         string rankUUID = "0193069c-f85c-732c-bdb5-4934d89d9245"; //리더보드 UUID값
         var bro = Backend.URank.User.GetRankList(rankUUID);
@@ -97,7 +97,7 @@ public class BackendRank
         Debug.Log("총 랭킹 등록 유저 수 : " + bro.GetFlattenJSON()["totalCount"].ToString());
 
         var jsonData = bro.FlattenRows()[0];
-        List<string> firstRankInfo = new List<string>
+        string[] firstRankInfo = new string[2]
         {
             jsonData["nickname"].ToString(),
             jsonData["score"].ToString()

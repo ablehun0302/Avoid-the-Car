@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -7,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public class ScoreManager : MonoBehaviour
 {
+    public event Action OnScoreChanged;
+
     public int Score { get; set; } = 0;
     public int ElapsedSec { get; set; } = 0;
     public int SecDividedByTen { get; set; } = 0;
@@ -59,6 +62,8 @@ public class ScoreManager : MonoBehaviour
                 ElapsedSec++;
                 SecDividedByTen = 0;
             }
+
+            OnScoreChanged?.Invoke();
             
             if (SecDividedByTen != 0) { continue; }
 
@@ -97,6 +102,8 @@ public class ScoreManager : MonoBehaviour
         if (!gameManager.IsGameOver)
         {
             Score += bonusScore;
+            OnScoreChanged?.Invoke();
+
             if (bonusScore >= 1000)
             {
                 for (int i = 0; i < 2; i ++) {Instantiate(fireworkVFX, player.transform.position, fireworkVFX.transform.rotation);}
@@ -124,5 +131,6 @@ public class ScoreManager : MonoBehaviour
         ElapsedSec = 0;
         SecDividedByTen = 0;
         SpeedFactor = 1;
+        OnScoreChanged?.Invoke();
     }
 }

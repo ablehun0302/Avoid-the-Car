@@ -3,12 +3,15 @@ using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
 using TMPro;
+using System;
 
 /// <summary>
 /// 게임의 흐름을 제어하는 메서드 모음
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    public event Action OnGameOver;
+
     public bool IsGameOver { get; private set; } = false;
     
     Vector3 textScale = new(1, 1, 1);
@@ -17,14 +20,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera followCamera;
     [SerializeField] GameObject obstacleSpawner;
     [SerializeField] Transform obstaclePool;
-    [Header("타이틀 캔버스 관련 필드")]
-    [SerializeField] GameObject titleCanvas;
     [Header("인게임 캔버스 관련 필드")]
-    [SerializeField] GameObject inGameCanvas;
     [SerializeField] GameObject[] startTexts;
     [SerializeField] GameObject firstRankText;
     [Header("게임오버 캔버스 관련 필드")]
-    [SerializeField] GameObject gameOverCanvas;
     [SerializeField] TextMeshProUGUI mainText;
     [SerializeField] TextMeshProUGUI subText;
     
@@ -33,6 +32,8 @@ public class GameManager : MonoBehaviour
         public PlayerMovement GetPlayerMovement() { return playerMovement; }
     [SerializeField] ScoreManager scoreManager;
         public ScoreManager GetScoreManager() { return scoreManager; }
+    [SerializeField] MainModel mainModel;
+        public MainModel GetMainModel() { return mainModel; }
 
     public static GameManager Instance { get; private set; }
 
@@ -77,10 +78,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameStart()
     {
-        titleCanvas.SetActive(false);
-        inGameCanvas.SetActive(true);   //인게임 캔버스 켜기
-        gameOverCanvas.SetActive(false);
-
         Sequence countSequence = DOTween.Sequence();
         for (int i = 0; i < startTexts.Length; i++)
         {
@@ -135,12 +132,11 @@ public class GameManager : MonoBehaviour
         //스코어 더하기 중지
         if (scoreManager.coroutine != null) StopCoroutine(scoreManager.coroutine);
 
-        inGameCanvas.SetActive(false);
-        gameOverCanvas.SetActive(true);
+        OnGameOver?.Invoke();
         
         //랭킹 비교 후 텍스트 변경
         if (BackendGameData.userData == null) return;
-        List<string> firstRankInfo = BackendRank.Instance.FirstRankGet();
+        string[] firstRankInfo = BackendRank.Instance.FirstRankGet();
         string firstRankNickname = firstRankInfo[0];
         int firstRankScore = int.Parse(firstRankInfo[1]);
 
